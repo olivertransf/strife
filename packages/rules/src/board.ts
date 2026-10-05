@@ -39,7 +39,7 @@ export function standardBoard(): Board {
     node("college-1", "action", 0, 0, "Act"),
     node("college-2", "pet", 1, 0, "Pet"),
     node("college-3", "action", 2, 0, "Act"),
-    node("graduation", "stop", 3, 0, "Graduation", { stop: "graduation" }),
+    node("graduation", "stop", 3, 0, "Grad", { stop: "graduation" }),
   ];
   const career = [
     node("career-1", "action", 0, 2, "Act"),
@@ -76,7 +76,7 @@ export function standardBoard(): Board {
     node("m11", "payday", 4, 5, "Pay"),
     node("m12", "action", 5, 5, "Act"),
     node("m13", "pet", 6, 5, "Pet"),
-    node("night", "stop", 7, 5, "Night school", { stop: "nightSchool" }),
+    node("night", "stop", 7, 5, "Night", { stop: "nightSchool" }),
   ];
   const towardRisky = [
     node("m14", "payday", 9, 6, "Pay"),
@@ -97,7 +97,7 @@ export function standardBoard(): Board {
     node("m17", "payday", 6, 7, "Pay"),
     node("m18", "action", 5, 7, "Act"),
     node("m19", "pet", 4, 7, "Pet"),
-    node("retirement", "stop", 2, 7, "Retirement", { stop: "retirement" }),
+    node("retirement", "stop", 2, 7, "Retire", { stop: "retirement" }),
   ];
 
   chain(college);
