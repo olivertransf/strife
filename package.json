@@ -1,0 +1,13 @@
+{
+  "name": "strife",
+  "private": true,
+  "packageManager": "pnpm@10.32.1",
+  "scripts": {
+    "dev": "pnpm --filter @strife/client dev",
+    "test": "pnpm --filter @strife/rules test",
+    "build": "pnpm --filter @strife/client build"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": ["esbuild"]
+  }
+}

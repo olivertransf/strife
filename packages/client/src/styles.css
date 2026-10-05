@@ -1,0 +1,18 @@
+:root {
+  color: #241c14;
+  background: #173628;
+  font-family: Outfit, sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+.setup {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  color: #f3e6c8;
+  font-family: Fraunces, serif;
+  font-size: 3rem;
+}
