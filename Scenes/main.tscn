@@ -1,0 +1,1526 @@
+[gd_scene load_steps=20 format=3 uid="uid://bi3xearknafcx"]
+
+[ext_resource type="Script" uid="uid://b1x5spbeidbw4" path="res://Scripts/main.gd" id="1_jjvhh"]
+[ext_resource type="Script" uid="uid://clq830777ntce" path="res://Scripts/marker_2d.gd" id="2_bo1nx"]
+[ext_resource type="PackedScene" uid="uid://cdqgvssucc8dv" path="res://Scenes/player.tscn" id="4_kry3j"]
+[ext_resource type="Texture2D" uid="uid://pb8ffeqgef0c" path="res://Assets/kenney_boardgame-pack/Spritesheets/piecesRed.png" id="5_hptm8"]
+[ext_resource type="PackedScene" uid="uid://chchbq6scwnmt" path="res://Scenes/ui.tscn" id="6_21xkr"]
+[ext_resource type="Texture2D" uid="uid://055gcbmbx6j1" path="res://Assets/kenney_boardgame-pack/Spritesheets/piecesGreen.png" id="6_344ge"]
+[ext_resource type="Texture2D" uid="uid://bv4ywtgvedkij" path="res://Assets/kenney_boardgame-pack/Spritesheets/piecesBlue.png" id="6_d1ilt"]
+[ext_resource type="Texture2D" uid="uid://dwrslnssyfbij" path="res://Assets/Godot-Placeholder-Sprites-main/Circle/Circle-0004.png" id="9_hptm8"]
+[ext_resource type="Texture2D" uid="uid://cl403rklvky4u" path="res://Assets/IMG_3466.jpeg" id="9_ynf5e"]
+[ext_resource type="Texture2D" uid="uid://qk2171afqawe" path="res://Assets/Godot-Placeholder-Sprites-main/Circle/Circle-0005.png" id="10_fevyy"]
+[ext_resource type="Texture2D" uid="uid://1vci20fqu6mm" path="res://Assets/Godot-Placeholder-Sprites-main/Circle/Circle-0007.png" id="11_hibaj"]
+[ext_resource type="Texture2D" uid="uid://bfdroqhxr1ttx" path="res://Assets/Godot-Placeholder-Sprites-main/Circle/Circle-0003.png" id="12_pdsj5"]
+[ext_resource type="Texture2D" uid="uid://c5l2yb7mh0sv3" path="res://Assets/Godot-Placeholder-Sprites-main/Circle/Circle-0002.png" id="13_ee4r6"]
+[ext_resource type="Texture2D" uid="uid://bph0p1wk2xibj" path="res://Assets/Godot-Placeholder-Sprites-main/Diamond/Sprite-0003.png" id="14_gt3je"]
+[ext_resource type="Texture2D" uid="uid://bfk8m51o2pjym" path="res://Assets/Godot-Placeholder-Sprites-main/Diamond/Sprite-0002.png" id="15_3pmx8"]
+[ext_resource type="Texture2D" uid="uid://dm64nxbcsmten" path="res://Assets/Godot-Placeholder-Sprites-main/Circle/Circle-0006.png" id="16_u50mg"]
+[ext_resource type="Texture2D" uid="uid://cjypm48j0vxjo" path="res://Assets/Godot-Placeholder-Sprites-main/Diamond/Sprite-0005.png" id="17_cbgmd"]
+[ext_resource type="Texture2D" uid="uid://bt40meyqsacif" path="res://Assets/Godot-Placeholder-Sprites-main/Triangle/Triangle-0002.png" id="18_1w6v2"]
+[ext_resource type="Texture2D" uid="uid://bbwod5iq1elss" path="res://Assets/Godot-Placeholder-Sprites-main/Square/Square-0001.png" id="19_ueoa1"]
+
+[node name="Main" type="Node2D" node_paths=PackedStringArray("game_spaces")]
+script = ExtResource("1_jjvhh")
+game_spaces = [NodePath("Spaces/Start"), NodePath("Spaces/Space1"), NodePath("Spaces/Space2"), NodePath("Spaces/Space3"), NodePath("Spaces/Space4")]
+
+[node name="Spaces" type="Node2D" parent="."]
+
+[node name="Start" type="Marker2D" parent="Spaces"]
+position = Vector2(59, 69)
+gizmo_extents = 33.0
+script = ExtResource("2_bo1nx")
+space_type = 3
+next_spaces = Array[NodePath]([NodePath("../Space1"), NodePath("../Space122")])
+
+[node name="Space1" type="Marker2D" parent="Spaces"]
+position = Vector2(174, 78)
+gizmo_extents = 33.0
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space2")])
+
+[node name="Space2" type="Marker2D" parent="Spaces"]
+position = Vector2(218, 80)
+gizmo_extents = 33.0
+script = ExtResource("2_bo1nx")
+next_spaces = Array[NodePath]([NodePath("../Space3")])
+
+[node name="Space3" type="Marker2D" parent="Spaces"]
+position = Vector2(260, 94)
+gizmo_extents = 33.0
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space4")])
+
+[node name="Space4" type="Marker2D" parent="Spaces"]
+position = Vector2(274, 70)
+gizmo_extents = 33.0
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space5")])
+
+[node name="Space5" type="Marker2D" parent="Spaces"]
+position = Vector2(300, 44)
+gizmo_extents = 33.0
+script = ExtResource("2_bo1nx")
+next_spaces = Array[NodePath]([NodePath("../Space6")])
+
+[node name="Space6" type="Marker2D" parent="Spaces"]
+position = Vector2(338, 34)
+gizmo_extents = 33.0
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space7")])
+
+[node name="Space7" type="Marker2D" parent="Spaces"]
+position = Vector2(377, 48)
+gizmo_extents = 33.0
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space8")])
+
+[node name="Space8" type="Marker2D" parent="Spaces"]
+position = Vector2(410, 71)
+gizmo_extents = 33.0
+script = ExtResource("2_bo1nx")
+space_type = 6
+next_spaces = Array[NodePath]([NodePath("../Space9")])
+
+[node name="Space9" type="Marker2D" parent="Spaces"]
+position = Vector2(450, 78)
+gizmo_extents = 33.0
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space10")])
+
+[node name="Space10" type="Marker2D" parent="Spaces"]
+position = Vector2(489, 60)
+gizmo_extents = 33.0
+script = ExtResource("2_bo1nx")
+next_spaces = Array[NodePath]([NodePath("../Space11")])
+
+[node name="Space11" type="Marker2D" parent="Spaces"]
+position = Vector2(529, 42)
+gizmo_extents = 33.0
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space12")])
+
+[node name="Space12" type="Marker2D" parent="Spaces"]
+position = Vector2(572, 52)
+gizmo_extents = 33.0
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space13")])
+
+[node name="Space13" type="Marker2D" parent="Spaces"]
+position = Vector2(602, 80)
+gizmo_extents = 33.0
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space14")])
+
+[node name="Space14" type="Marker2D" parent="Spaces"]
+position = Vector2(614, 115)
+gizmo_extents = 33.0
+script = ExtResource("2_bo1nx")
+space_type = 9
+next_spaces = Array[NodePath]([NodePath("../Space15")])
+
+[node name="Space15" type="Marker2D" parent="Spaces"]
+position = Vector2(609, 147)
+gizmo_extents = 33.0
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space16")])
+
+[node name="Space16" type="Marker2D" parent="Spaces"]
+position = Vector2(580, 174)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space17")])
+
+[node name="Space17" type="Marker2D" parent="Spaces"]
+position = Vector2(551, 198)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space18")])
+
+[node name="Space18" type="Marker2D" parent="Spaces"]
+position = Vector2(556, 235)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space19")])
+
+[node name="Space19" type="Marker2D" parent="Spaces"]
+position = Vector2(567, 269)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space20")])
+
+[node name="Space20" type="Marker2D" parent="Spaces"]
+position = Vector2(579, 303)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+next_spaces = Array[NodePath]([NodePath("../Space21")])
+
+[node name="Space21" type="Marker2D" parent="Spaces"]
+position = Vector2(591, 335)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 8
+next_spaces = Array[NodePath]([NodePath("../Space22")])
+
+[node name="Space22" type="Marker2D" parent="Spaces"]
+position = Vector2(605, 370)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 6
+next_spaces = Array[NodePath]([NodePath("../Space23")])
+
+[node name="Space23" type="Marker2D" parent="Spaces"]
+position = Vector2(617, 404)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space24")])
+
+[node name="Space24" type="Marker2D" parent="Spaces"]
+position = Vector2(623, 442)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 2
+next_spaces = Array[NodePath]([NodePath("../Space25")])
+
+[node name="Space25" type="Marker2D" parent="Spaces"]
+position = Vector2(590, 453)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space26")])
+
+[node name="Space26" type="Marker2D" parent="Spaces"]
+position = Vector2(556, 458)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 9
+next_spaces = Array[NodePath]([NodePath("../Space27"), NodePath("../Space34")])
+
+[node name="Space27" type="Marker2D" parent="Spaces"]
+position = Vector2(525, 467)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space28")])
+
+[node name="Space28" type="Marker2D" parent="Spaces"]
+position = Vector2(497, 484)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space29")])
+
+[node name="Space29" type="Marker2D" parent="Spaces"]
+position = Vector2(482, 517)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space30")])
+
+[node name="Space30" type="Marker2D" parent="Spaces"]
+position = Vector2(474, 554)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space31")])
+
+[node name="Space31" type="Marker2D" parent="Spaces"]
+position = Vector2(460, 588)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+next_spaces = Array[NodePath]([NodePath("../Space32")])
+
+[node name="Space32" type="Marker2D" parent="Spaces"]
+position = Vector2(430, 597)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space33")])
+
+[node name="Space33" type="Marker2D" parent="Spaces"]
+position = Vector2(394, 586)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space43")])
+
+[node name="Space34" type="Marker2D" parent="Spaces"]
+position = Vector2(548, 426)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space35")])
+
+[node name="Space35" type="Marker2D" parent="Spaces"]
+position = Vector2(523, 405)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space36")])
+
+[node name="Space36" type="Marker2D" parent="Spaces"]
+position = Vector2(490, 407)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space37")])
+
+[node name="Space37" type="Marker2D" parent="Spaces"]
+position = Vector2(469, 431)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space38")])
+
+[node name="Space38" type="Marker2D" parent="Spaces"]
+position = Vector2(448, 456)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space39")])
+
+[node name="Space39" type="Marker2D" parent="Spaces"]
+position = Vector2(409, 453)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+next_spaces = Array[NodePath]([NodePath("../Space40")])
+
+[node name="Space40" type="Marker2D" parent="Spaces"]
+position = Vector2(403, 485)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space41")])
+
+[node name="Space41" type="Marker2D" parent="Spaces"]
+position = Vector2(413, 519)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space42")])
+
+[node name="Space42" type="Marker2D" parent="Spaces"]
+position = Vector2(407, 557)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space33")])
+
+[node name="Space43" type="Marker2D" parent="Spaces"]
+position = Vector2(365, 560)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space44")])
+
+[node name="Space44" type="Marker2D" parent="Spaces"]
+position = Vector2(349, 525)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 2
+next_spaces = Array[NodePath]([NodePath("../Space45")])
+
+[node name="Space45" type="Marker2D" parent="Spaces"]
+position = Vector2(350, 488)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space46")])
+
+[node name="Space46" type="Marker2D" parent="Spaces"]
+position = Vector2(360, 454)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+next_spaces = Array[NodePath]([NodePath("../Space47")])
+
+[node name="Space47" type="Marker2D" parent="Spaces"]
+position = Vector2(382, 423)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 7
+next_spaces = Array[NodePath]([NodePath("../Space48")])
+
+[node name="Space48" type="Marker2D" parent="Spaces"]
+position = Vector2(414, 402)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space49")])
+
+[node name="Space49" type="Marker2D" parent="Spaces"]
+position = Vector2(444, 388)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 6
+next_spaces = Array[NodePath]([NodePath("../Space50")])
+
+[node name="Space50" type="Marker2D" parent="Spaces"]
+position = Vector2(477, 371)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space51")])
+
+[node name="Space51" type="Marker2D" parent="Spaces"]
+position = Vector2(502, 351)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 8
+next_spaces = Array[NodePath]([NodePath("../Space52")])
+
+[node name="Space52" type="Marker2D" parent="Spaces"]
+position = Vector2(511, 317)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 2
+next_spaces = Array[NodePath]([NodePath("../Space53")])
+
+[node name="Space53" type="Marker2D" parent="Spaces"]
+position = Vector2(512, 282)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+next_spaces = Array[NodePath]([NodePath("../Space54")])
+
+[node name="Space54" type="Marker2D" parent="Spaces"]
+position = Vector2(511, 248)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space55")])
+
+[node name="Space55" type="Marker2D" parent="Spaces"]
+position = Vector2(509, 218)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 9
+next_spaces = Array[NodePath]([NodePath("../Space56"), NodePath("../Space66")])
+
+[node name="Space56" type="Marker2D" parent="Spaces"]
+position = Vector2(502, 188)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space57")])
+
+[node name="Space57" type="Marker2D" parent="Spaces"]
+position = Vector2(486, 160)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 7
+next_spaces = Array[NodePath]([NodePath("../Space58")])
+
+[node name="Space58" type="Marker2D" parent="Spaces"]
+position = Vector2(464, 136)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 2
+next_spaces = Array[NodePath]([NodePath("../Space59")])
+
+[node name="Space59" type="Marker2D" parent="Spaces"]
+position = Vector2(433, 119)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 5
+next_spaces = Array[NodePath]([NodePath("../Space60")])
+
+[node name="Space60" type="Marker2D" parent="Spaces"]
+position = Vector2(397, 115)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 7
+next_spaces = Array[NodePath]([NodePath("../Space61")])
+
+[node name="Space61" type="Marker2D" parent="Spaces"]
+position = Vector2(365, 132)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+next_spaces = Array[NodePath]([NodePath("../Space62")])
+
+[node name="Space62" type="Marker2D" parent="Spaces"]
+position = Vector2(352, 163)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 5
+next_spaces = Array[NodePath]([NodePath("../Space63")])
+
+[node name="Space63" type="Marker2D" parent="Spaces"]
+position = Vector2(350, 197)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 4
+next_spaces = Array[NodePath]([NodePath("../Space64")])
+
+[node name="Space64" type="Marker2D" parent="Spaces"]
+position = Vector2(350, 231)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space65")])
+
+[node name="Space65" type="Marker2D" parent="Spaces"]
+position = Vector2(349, 264)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 9
+next_spaces = Array[NodePath]([NodePath("../Space73")])
+
+[node name="Space66" type="Marker2D" parent="Spaces"]
+position = Vector2(476, 222)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space67")])
+
+[node name="Space67" type="Marker2D" parent="Spaces"]
+position = Vector2(449, 245)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space68")])
+
+[node name="Space68" type="Marker2D" parent="Spaces"]
+position = Vector2(449, 282)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space69")])
+
+[node name="Space69" type="Marker2D" parent="Spaces"]
+position = Vector2(452, 319)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space70")])
+
+[node name="Space70" type="Marker2D" parent="Spaces"]
+position = Vector2(426, 342)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space71")])
+
+[node name="Space71" type="Marker2D" parent="Spaces"]
+position = Vector2(398, 326)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+next_spaces = Array[NodePath]([NodePath("../Space72")])
+
+[node name="Space72" type="Marker2D" parent="Spaces"]
+position = Vector2(377, 298)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space73")])
+
+[node name="Space73" type="Marker2D" parent="Spaces"]
+position = Vector2(350, 301)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space74")])
+
+[node name="Space74" type="Marker2D" parent="Spaces"]
+position = Vector2(351, 336)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 6
+next_spaces = Array[NodePath]([NodePath("../Space75")])
+
+[node name="Space75" type="Marker2D" parent="Spaces"]
+position = Vector2(348, 376)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space76")])
+
+[node name="Space76" type="Marker2D" parent="Spaces"]
+position = Vector2(312, 378)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space77")])
+
+[node name="Space77" type="Marker2D" parent="Spaces"]
+position = Vector2(299, 403)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 7
+next_spaces = Array[NodePath]([NodePath("../Space78")])
+
+[node name="Space78" type="Marker2D" parent="Spaces"]
+position = Vector2(309, 443)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space79")])
+
+[node name="Space79" type="Marker2D" parent="Spaces"]
+position = Vector2(309, 480)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 2
+next_spaces = Array[NodePath]([NodePath("../Space80")])
+
+[node name="Space80" type="Marker2D" parent="Spaces"]
+position = Vector2(309, 521)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+next_spaces = Array[NodePath]([NodePath("../Space81")])
+
+[node name="Space81" type="Marker2D" parent="Spaces"]
+position = Vector2(309, 562)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 4
+next_spaces = Array[NodePath]([NodePath("../Space82")])
+
+[node name="Space82" type="Marker2D" parent="Spaces"]
+position = Vector2(304, 605)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space83")])
+
+[node name="Space83" type="Marker2D" parent="Spaces"]
+position = Vector2(265, 607)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space84")])
+
+[node name="Space84" type="Marker2D" parent="Spaces"]
+position = Vector2(230, 588)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 6
+next_spaces = Array[NodePath]([NodePath("../Space85")])
+
+[node name="Space85" type="Marker2D" parent="Spaces"]
+position = Vector2(192, 602)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space86")])
+
+[node name="Space86" type="Marker2D" parent="Spaces"]
+position = Vector2(152, 612)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space87")])
+
+[node name="Space87" type="Marker2D" parent="Spaces"]
+position = Vector2(113, 614)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space88")])
+
+[node name="Space88" type="Marker2D" parent="Spaces"]
+position = Vector2(77, 614)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 2
+next_spaces = Array[NodePath]([NodePath("../Space89")])
+
+[node name="Space89" type="Marker2D" parent="Spaces"]
+position = Vector2(34, 608)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space90")])
+
+[node name="Space90" type="Marker2D" parent="Spaces"]
+position = Vector2(26, 573)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+next_spaces = Array[NodePath]([NodePath("../Space91")])
+
+[node name="Space91" type="Marker2D" parent="Spaces"]
+position = Vector2(25, 536)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space92")])
+
+[node name="Space92" type="Marker2D" parent="Spaces"]
+position = Vector2(27, 502)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 9
+next_spaces = Array[NodePath]([NodePath("../Space93"), NodePath("../Space100")])
+
+[node name="Space93" type="Marker2D" parent="Spaces"]
+position = Vector2(61, 502)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space94")])
+
+[node name="Space94" type="Marker2D" parent="Spaces"]
+position = Vector2(91, 501)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 10
+next_spaces = Array[NodePath]([NodePath("../Space95")])
+
+[node name="Space95" type="Marker2D" parent="Spaces"]
+position = Vector2(120, 494)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 8
+next_spaces = Array[NodePath]([NodePath("../Space96")])
+
+[node name="Space96" type="Marker2D" parent="Spaces"]
+position = Vector2(120, 464)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 11
+next_spaces = Array[NodePath]([NodePath("../Space97")])
+
+[node name="Space97" type="Marker2D" parent="Spaces"]
+position = Vector2(94, 440)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 10
+next_spaces = Array[NodePath]([NodePath("../Space98")])
+
+[node name="Space98" type="Marker2D" parent="Spaces"]
+position = Vector2(92, 408)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 11
+next_spaces = Array[NodePath]([NodePath("../Space99")])
+
+[node name="Space99" type="Marker2D" parent="Spaces"]
+position = Vector2(120, 378)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+next_spaces = Array[NodePath]([NodePath("../Space107")])
+
+[node name="Space100" type="Marker2D" parent="Spaces"]
+position = Vector2(26, 469)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space101")])
+
+[node name="Space101" type="Marker2D" parent="Spaces"]
+position = Vector2(27, 439)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space102")])
+
+[node name="Space102" type="Marker2D" parent="Spaces"]
+position = Vector2(27, 404)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space103")])
+
+[node name="Space103" type="Marker2D" parent="Spaces"]
+position = Vector2(27, 368)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space104")])
+
+[node name="Space104" type="Marker2D" parent="Spaces"]
+position = Vector2(29, 331)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space105")])
+
+[node name="Space105" type="Marker2D" parent="Spaces"]
+position = Vector2(55, 313)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space106")])
+
+[node name="Space106" type="Marker2D" parent="Spaces"]
+position = Vector2(84, 338)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space107")])
+
+[node name="Space107" type="Marker2D" parent="Spaces"]
+position = Vector2(126, 348)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space108")])
+
+[node name="Space108" type="Marker2D" parent="Spaces"]
+position = Vector2(156, 350)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 6
+next_spaces = Array[NodePath]([NodePath("../Space109")])
+
+[node name="Space109" type="Marker2D" parent="Spaces"]
+position = Vector2(190, 349)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 8
+next_spaces = Array[NodePath]([NodePath("../Space110")])
+
+[node name="Space110" type="Marker2D" parent="Spaces"]
+position = Vector2(226, 349)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space111")])
+
+[node name="Space111" type="Marker2D" parent="Spaces"]
+position = Vector2(258, 353)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 2
+next_spaces = Array[NodePath]([NodePath("../Space112")])
+
+[node name="Space112" type="Marker2D" parent="Spaces"]
+position = Vector2(262, 386)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+next_spaces = Array[NodePath]([NodePath("../Space113")])
+
+[node name="Space113" type="Marker2D" parent="Spaces"]
+position = Vector2(228, 393)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space114")])
+
+[node name="Space114" type="Marker2D" parent="Spaces"]
+position = Vector2(193, 394)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space115")])
+
+[node name="Space115" type="Marker2D" parent="Spaces"]
+position = Vector2(162, 405)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space116")])
+
+[node name="Space116" type="Marker2D" parent="Spaces"]
+position = Vector2(164, 435)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space117")])
+
+[node name="Space117" type="Marker2D" parent="Spaces"]
+position = Vector2(194, 445)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+next_spaces = Array[NodePath]([NodePath("../Space118")])
+
+[node name="Space118" type="Marker2D" parent="Spaces"]
+position = Vector2(228, 443)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 8
+next_spaces = Array[NodePath]([NodePath("../Space119")])
+
+[node name="Space119" type="Marker2D" parent="Spaces"]
+position = Vector2(265, 448)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 6
+next_spaces = Array[NodePath]([NodePath("../Space120")])
+
+[node name="Space120" type="Marker2D" parent="Spaces"]
+position = Vector2(266, 477)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space121")])
+
+[node name="Space121" type="Marker2D" parent="Spaces"]
+position = Vector2(199, 495)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 12
+next_spaces = Array[NodePath]([NodePath("../Space122")])
+
+[node name="Space122" type="Marker2D" parent="Spaces"]
+position = Vector2(69, 183)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space123")])
+
+[node name="Space123" type="Marker2D" parent="Spaces"]
+position = Vector2(71, 226)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space124")])
+
+[node name="Space124" type="Marker2D" parent="Spaces"]
+position = Vector2(92, 270)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space125")])
+
+[node name="Space125" type="Marker2D" parent="Spaces"]
+position = Vector2(125, 301)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space126")])
+
+[node name="Space126" type="Marker2D" parent="Spaces"]
+position = Vector2(173, 319)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space127")])
+
+[node name="Space127" type="Marker2D" parent="Spaces"]
+position = Vector2(217, 317)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space128")])
+
+[node name="Space128" type="Marker2D" parent="Spaces"]
+position = Vector2(255, 298)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space129")])
+
+[node name="Space129" type="Marker2D" parent="Spaces"]
+position = Vector2(289, 272)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space130")])
+
+[node name="Space130" type="Marker2D" parent="Spaces"]
+position = Vector2(304, 231)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space131")])
+
+[node name="Space131" type="Marker2D" parent="Spaces"]
+position = Vector2(309, 193)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space132")])
+
+[node name="Space132" type="Marker2D" parent="Spaces"]
+position = Vector2(308, 155)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 9
+next_spaces = Array[NodePath]([NodePath("../Space133")])
+
+[node name="Space133" type="Marker2D" parent="Spaces"]
+position = Vector2(293, 120)
+gizmo_extents = 38.7
+script = ExtResource("2_bo1nx")
+space_type = 1
+next_spaces = Array[NodePath]([NodePath("../Space3")])
+
+[node name="player1" parent="." groups=["players"] instance=ExtResource("4_kry3j")]
+texture = ExtResource("5_hptm8")
+
+[node name="player2" parent="." groups=["players"] instance=ExtResource("4_kry3j")]
+texture = ExtResource("6_d1ilt")
+
+[node name="player3" parent="." groups=["players"] instance=ExtResource("4_kry3j")]
+texture = ExtResource("6_344ge")
+
+[node name="Img3466" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.28235295)
+z_index = -1
+position = Vector2(328.43747, 331.87503)
+scale = Vector2(0.23887028, 0.23288688)
+texture = ExtResource("9_ynf5e")
+metadata/_edit_lock_ = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(340, 320)
+zoom = Vector2(1.15, 1.15)
+
+[node name="Control" parent="." instance=ExtResource("6_21xkr")]
+
+[node name="Board" type="Node2D" parent="."]
+z_index = -1
+
+[node name="Circle0004" type="Sprite2D" parent="Board"]
+position = Vector2(175, 78)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0005" type="Sprite2D" parent="Board"]
+position = Vector2(218, 81)
+texture = ExtResource("10_fevyy")
+
+[node name="Circle0006" type="Sprite2D" parent="Board"]
+position = Vector2(257, 97)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0007" type="Sprite2D" parent="Board"]
+position = Vector2(274, 69)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0008" type="Sprite2D" parent="Board"]
+position = Vector2(298, 45)
+texture = ExtResource("10_fevyy")
+
+[node name="Circle0009" type="Sprite2D" parent="Board"]
+position = Vector2(338, 35)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0010" type="Sprite2D" parent="Board"]
+position = Vector2(377, 48)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0011" type="Sprite2D" parent="Board"]
+position = Vector2(410, 72)
+texture = ExtResource("11_hibaj")
+
+[node name="Circle0012" type="Sprite2D" parent="Board"]
+position = Vector2(450, 79)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0013" type="Sprite2D" parent="Board"]
+position = Vector2(487, 61)
+texture = ExtResource("10_fevyy")
+
+[node name="Circle0014" type="Sprite2D" parent="Board"]
+position = Vector2(526, 42)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0015" type="Sprite2D" parent="Board"]
+position = Vector2(572, 54)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0016" type="Sprite2D" parent="Board"]
+position = Vector2(601, 81)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0017" type="Sprite2D" parent="Board"]
+position = Vector2(608, 148)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0018" type="Sprite2D" parent="Board"]
+position = Vector2(581, 175)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0019" type="Sprite2D" parent="Board"]
+position = Vector2(548, 200)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0020" type="Sprite2D" parent="Board"]
+position = Vector2(554, 239)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0021" type="Sprite2D" parent="Board"]
+position = Vector2(565, 272)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0022" type="Sprite2D" parent="Board"]
+position = Vector2(577, 305)
+texture = ExtResource("10_fevyy")
+
+[node name="Circle0003" type="Sprite2D" parent="Board"]
+position = Vector2(620, 442)
+texture = ExtResource("12_pdsj5")
+
+[node name="Circle0023" type="Sprite2D" parent="Board"]
+position = Vector2(604, 373)
+texture = ExtResource("11_hibaj")
+
+[node name="Circle0024" type="Sprite2D" parent="Board"]
+position = Vector2(618, 407)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0025" type="Sprite2D" parent="Board"]
+position = Vector2(587, 455)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0002" type="Sprite2D" parent="Board"]
+position = Vector2(554, 458)
+texture = ExtResource("13_ee4r6")
+
+[node name="Circle0026" type="Sprite2D" parent="Board"]
+position = Vector2(549, 426)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0027" type="Sprite2D" parent="Board"]
+position = Vector2(523, 406)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0028" type="Sprite2D" parent="Board"]
+position = Vector2(488, 409)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0029" type="Sprite2D" parent="Board"]
+position = Vector2(466, 434)
+texture = ExtResource("9_hptm8")
+
+[node name="Sprite0003" type="Sprite2D" parent="Board"]
+position = Vector2(447, 458)
+texture = ExtResource("14_gt3je")
+
+[node name="Circle0030" type="Sprite2D" parent="Board"]
+position = Vector2(410, 456)
+texture = ExtResource("10_fevyy")
+
+[node name="Sprite0004" type="Sprite2D" parent="Board"]
+position = Vector2(590, 336)
+texture = ExtResource("14_gt3je")
+
+[node name="Sprite0002" type="Sprite2D" parent="Board"]
+position = Vector2(612, 113)
+texture = ExtResource("15_3pmx8")
+
+[node name="Circle0031" type="Sprite2D" parent="Board"]
+position = Vector2(521, 468)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0032" type="Sprite2D" parent="Board"]
+position = Vector2(496, 487)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0033" type="Sprite2D" parent="Board"]
+position = Vector2(480, 517)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0034" type="Sprite2D" parent="Board"]
+position = Vector2(472, 555)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0035" type="Sprite2D" parent="Board"]
+position = Vector2(461, 589)
+texture = ExtResource("10_fevyy")
+
+[node name="Circle0036" type="Sprite2D" parent="Board"]
+position = Vector2(429, 599)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0037" type="Sprite2D" parent="Board"]
+position = Vector2(403, 487)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0038" type="Sprite2D" parent="Board"]
+position = Vector2(414, 523)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0039" type="Sprite2D" parent="Board"]
+position = Vector2(408, 560)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0040" type="Sprite2D" parent="Board"]
+position = Vector2(389, 588)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0041" type="Sprite2D" parent="Board"]
+position = Vector2(364, 559)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0042" type="Sprite2D" parent="Board"]
+position = Vector2(348, 526)
+texture = ExtResource("12_pdsj5")
+
+[node name="Circle0043" type="Sprite2D" parent="Board"]
+position = Vector2(347, 487)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0044" type="Sprite2D" parent="Board"]
+position = Vector2(360, 452)
+texture = ExtResource("10_fevyy")
+
+[node name="Circle0045" type="Sprite2D" parent="Board"]
+position = Vector2(412, 404)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0046" type="Sprite2D" parent="Board"]
+position = Vector2(447, 388)
+texture = ExtResource("11_hibaj")
+
+[node name="Circle0047" type="Sprite2D" parent="Board"]
+position = Vector2(476, 375)
+texture = ExtResource("9_hptm8")
+
+[node name="Sprite0005" type="Sprite2D" parent="Board"]
+position = Vector2(501, 346)
+texture = ExtResource("14_gt3je")
+
+[node name="Circle0048" type="Sprite2D" parent="Board"]
+position = Vector2(511, 315)
+texture = ExtResource("12_pdsj5")
+
+[node name="Circle0049" type="Sprite2D" parent="Board"]
+position = Vector2(512, 280)
+texture = ExtResource("10_fevyy")
+
+[node name="Circle0050" type="Sprite2D" parent="Board"]
+position = Vector2(512, 250)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0051" type="Sprite2D" parent="Board"]
+position = Vector2(509, 216)
+texture = ExtResource("13_ee4r6")
+
+[node name="Circle0052" type="Sprite2D" parent="Board"]
+position = Vector2(383, 424)
+texture = ExtResource("16_u50mg")
+
+[node name="Circle0053" type="Sprite2D" parent="Board"]
+position = Vector2(502, 191)
+texture = ExtResource("16_u50mg")
+
+[node name="Circle0054" type="Sprite2D" parent="Board"]
+position = Vector2(488, 161)
+texture = ExtResource("16_u50mg")
+
+[node name="Circle0055" type="Sprite2D" parent="Board"]
+position = Vector2(462, 139)
+texture = ExtResource("12_pdsj5")
+
+[node name="Circle0056" type="Sprite2D" parent="Board"]
+position = Vector2(398, 116)
+texture = ExtResource("16_u50mg")
+
+[node name="Circle0057" type="Sprite2D" parent="Board"]
+position = Vector2(435, 119)
+texture = ExtResource("16_u50mg")
+
+[node name="Circle0058" type="Sprite2D" parent="Board"]
+position = Vector2(368, 132)
+texture = ExtResource("10_fevyy")
+
+[node name="Circle0059" type="Sprite2D" parent="Board"]
+position = Vector2(355, 164)
+texture = ExtResource("16_u50mg")
+
+[node name="Circle0060" type="Sprite2D" parent="Board"]
+position = Vector2(351, 197)
+texture = ExtResource("16_u50mg")
+
+[node name="Circle0061" type="Sprite2D" parent="Board"]
+position = Vector2(352, 232)
+texture = ExtResource("9_hptm8")
+
+[node name="Sprite0006" type="Sprite2D" parent="Board"]
+position = Vector2(351, 267)
+texture = ExtResource("15_3pmx8")
+
+[node name="Circle0062" type="Sprite2D" parent="Board"]
+position = Vector2(476, 220)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0063" type="Sprite2D" parent="Board"]
+position = Vector2(452, 246)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0064" type="Sprite2D" parent="Board"]
+position = Vector2(452, 283)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0065" type="Sprite2D" parent="Board"]
+position = Vector2(453, 321)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0066" type="Sprite2D" parent="Board"]
+position = Vector2(426, 343)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0067" type="Sprite2D" parent="Board"]
+position = Vector2(398, 324)
+texture = ExtResource("10_fevyy")
+
+[node name="Circle0068" type="Sprite2D" parent="Board"]
+position = Vector2(379, 296)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0069" type="Sprite2D" parent="Board"]
+position = Vector2(348, 298)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0070" type="Sprite2D" parent="Board"]
+position = Vector2(349, 337)
+texture = ExtResource("11_hibaj")
+
+[node name="Circle0071" type="Sprite2D" parent="Board"]
+position = Vector2(352, 372)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0072" type="Sprite2D" parent="Board"]
+position = Vector2(314, 377)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0073" type="Sprite2D" parent="Board"]
+position = Vector2(297, 403)
+texture = ExtResource("16_u50mg")
+
+[node name="Sprite0007" type="Sprite2D" parent="Board"]
+position = Vector2(307, 441)
+texture = ExtResource("14_gt3je")
+
+[node name="Circle0074" type="Sprite2D" parent="Board"]
+position = Vector2(309, 478)
+texture = ExtResource("12_pdsj5")
+
+[node name="Circle0075" type="Sprite2D" parent="Board"]
+position = Vector2(308, 521)
+texture = ExtResource("10_fevyy")
+
+[node name="Circle0076" type="Sprite2D" parent="Board"]
+position = Vector2(308, 563)
+texture = ExtResource("16_u50mg")
+
+[node name="Circle0077" type="Sprite2D" parent="Board"]
+position = Vector2(306, 602)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0078" type="Sprite2D" parent="Board"]
+position = Vector2(266, 611)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0079" type="Sprite2D" parent="Board"]
+position = Vector2(231, 589)
+texture = ExtResource("11_hibaj")
+
+[node name="Circle0080" type="Sprite2D" parent="Board"]
+position = Vector2(194, 600)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0081" type="Sprite2D" parent="Board"]
+position = Vector2(115, 615)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0082" type="Sprite2D" parent="Board"]
+position = Vector2(76, 616)
+texture = ExtResource("12_pdsj5")
+
+[node name="Sprite0008" type="Sprite2D" parent="Board"]
+position = Vector2(154, 613)
+texture = ExtResource("14_gt3je")
+
+[node name="Circle0083" type="Sprite2D" parent="Board"]
+position = Vector2(35, 609)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0084" type="Sprite2D" parent="Board"]
+position = Vector2(25, 571)
+texture = ExtResource("10_fevyy")
+
+[node name="Circle0085" type="Sprite2D" parent="Board"]
+position = Vector2(27, 533)
+texture = ExtResource("9_hptm8")
+
+[node name="Sprite0009" type="Sprite2D" parent="Board"]
+position = Vector2(25, 501)
+texture = ExtResource("15_3pmx8")
+
+[node name="Circle0086" type="Sprite2D" parent="Board"]
+position = Vector2(57, 503)
+texture = ExtResource("9_hptm8")
+
+[node name="Sprite0010" type="Sprite2D" parent="Board"]
+position = Vector2(89, 501)
+texture = ExtResource("17_cbgmd")
+
+[node name="Sprite0011" type="Sprite2D" parent="Board"]
+position = Vector2(94, 441)
+texture = ExtResource("17_cbgmd")
+
+[node name="Sprite0012" type="Sprite2D" parent="Board"]
+position = Vector2(122, 494)
+texture = ExtResource("14_gt3je")
+
+[node name="Triangle0002" type="Sprite2D" parent="Board"]
+position = Vector2(120, 459)
+texture = ExtResource("18_1w6v2")
+
+[node name="Triangle0003" type="Sprite2D" parent="Board"]
+position = Vector2(91, 404)
+texture = ExtResource("18_1w6v2")
+
+[node name="Sprite0013" type="Sprite2D" parent="Board"]
+position = Vector2(117, 383)
+texture = ExtResource("17_cbgmd")
+
+[node name="Circle0087" type="Sprite2D" parent="Board"]
+position = Vector2(124, 350)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0088" type="Sprite2D" parent="Board"]
+position = Vector2(85, 337)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0089" type="Sprite2D" parent="Board"]
+position = Vector2(59, 311)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0090" type="Sprite2D" parent="Board"]
+position = Vector2(30, 328)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0091" type="Sprite2D" parent="Board"]
+position = Vector2(25, 366)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0092" type="Sprite2D" parent="Board"]
+position = Vector2(27, 405)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0093" type="Sprite2D" parent="Board"]
+position = Vector2(27, 438)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0094" type="Sprite2D" parent="Board"]
+position = Vector2(27, 473)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0095" type="Sprite2D" parent="Board"]
+position = Vector2(158, 351)
+texture = ExtResource("11_hibaj")
+
+[node name="Sprite0014" type="Sprite2D" parent="Board"]
+position = Vector2(191, 350)
+texture = ExtResource("14_gt3je")
+
+[node name="Circle0096" type="Sprite2D" parent="Board"]
+position = Vector2(225, 348)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0097" type="Sprite2D" parent="Board"]
+position = Vector2(259, 353)
+texture = ExtResource("12_pdsj5")
+
+[node name="Circle0098" type="Sprite2D" parent="Board"]
+position = Vector2(263, 386)
+texture = ExtResource("10_fevyy")
+
+[node name="Circle0099" type="Sprite2D" parent="Board"]
+position = Vector2(228, 394)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0100" type="Sprite2D" parent="Board"]
+position = Vector2(194, 392)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0101" type="Sprite2D" parent="Board"]
+position = Vector2(164, 404)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0102" type="Sprite2D" parent="Board"]
+position = Vector2(163, 437)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0103" type="Sprite2D" parent="Board"]
+position = Vector2(196, 443)
+texture = ExtResource("10_fevyy")
+
+[node name="Sprite0015" type="Sprite2D" parent="Board"]
+position = Vector2(227, 442)
+texture = ExtResource("14_gt3je")
+
+[node name="Circle0104" type="Sprite2D" parent="Board"]
+position = Vector2(264, 448)
+texture = ExtResource("11_hibaj")
+
+[node name="Circle0105" type="Sprite2D" parent="Board"]
+position = Vector2(266, 480)
+texture = ExtResource("9_hptm8")
+
+[node name="Square0001" type="Sprite2D" parent="Board"]
+position = Vector2(227, 487)
+texture = ExtResource("19_ueoa1")
+
+[node name="Square0002" type="Sprite2D" parent="Board"]
+position = Vector2(60, 69)
+texture = ExtResource("19_ueoa1")
+
+[node name="Circle0106" type="Sprite2D" parent="Board"]
+position = Vector2(67, 183)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0107" type="Sprite2D" parent="Board"]
+position = Vector2(70, 224)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0108" type="Sprite2D" parent="Board"]
+position = Vector2(88, 273)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0109" type="Sprite2D" parent="Board"]
+position = Vector2(127, 304)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0110" type="Sprite2D" parent="Board"]
+position = Vector2(172, 319)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0111" type="Sprite2D" parent="Board"]
+position = Vector2(217, 314)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0112" type="Sprite2D" parent="Board"]
+position = Vector2(256, 299)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0113" type="Sprite2D" parent="Board"]
+position = Vector2(288, 269)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0114" type="Sprite2D" parent="Board"]
+position = Vector2(302, 233)
+texture = ExtResource("9_hptm8")
+
+[node name="Circle0115" type="Sprite2D" parent="Board"]
+position = Vector2(307, 196)
+texture = ExtResource("9_hptm8")
+
+[node name="Sprite0016" type="Sprite2D" parent="Board"]
+position = Vector2(304, 156)
+texture = ExtResource("15_3pmx8")
+
+[node name="Circle0116" type="Sprite2D" parent="Board"]
+position = Vector2(290, 122)
+texture = ExtResource("9_hptm8")
+
+[node name="spin_number" type="RichTextLabel" parent="."]
+offset_left = 104.0
+offset_top = 120.0
+offset_right = 266.0
+offset_bottom = 271.0
+theme_override_font_sizes/normal_font_size = 100
+text = "#"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.08

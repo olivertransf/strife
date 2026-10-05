@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdqgvssucc8dv"]
+
+[ext_resource type="Texture2D" uid="uid://wl5k0817ubvw" path="res://Assets/kenney_boardgame-pack/Spritesheets/piecesPurple.png" id="1_cvnsp"]
+[ext_resource type="Script" uid="uid://cfu57sfipvcyr" path="res://Scripts/player.gd" id="2_6t5aa"]
+
+[node name="player" type="Sprite2D"]
+texture = ExtResource("1_cvnsp")
+hframes = 19
+vframes = 3
+script = ExtResource("2_6t5aa")
+
+[node name="player_name" type="RichTextLabel" parent="."]
+offset_left = -60.0
+offset_top = -49.0
+offset_right = 60.0
+offset_bottom = -23.0
+text = "hi"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
