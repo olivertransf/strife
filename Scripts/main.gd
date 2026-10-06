@@ -10,7 +10,8 @@ const PET_NAMES: Array[String] = ["Miso", "Dot", "Pip", "Nib"]
 @onready var ui = $Control
 @onready var start_space: Spaces = $Spaces/Start
 
-var decks := preload("res://Scripts/life_decks.gd").new()
+const DeckScript := preload("res://Scripts/life_decks.gd")
+var decks
 var seated: Array[Player] = []
 var turn := 0
 var current_player: Player
@@ -18,21 +19,81 @@ var retire_count := 0
 var college_entry := ""
 var career_entry := ""
 var playing := false
+var autoplay := false
+var prompts := 0
+var did_repay: Dictionary = {}
+var sold_once := false
+var last_money: Dictionary = {}
+var ring
+var board
+var hold_camera := false
+var snapshot := false
+
+const PLAY_ZOOM := 1.5
+const PEG_COLORS: Array[Color] = [
+	Color(0.86, 0.27, 0.22),
+	Color(0.24, 0.46, 0.82),
+	Color(0.28, 0.62, 0.38),
+	Color(0.58, 0.36, 0.74),
+]
+
+const KIND_NAME: Dictionary = {
+	Spaces.SpaceType.PAYDAY: "Payday",
+	Spaces.SpaceType.ACTION: "Action",
+	Spaces.SpaceType.HOUSE: "House",
+	Spaces.SpaceType.START: "Start",
+	Spaces.SpaceType.BOY: "Boy",
+	Spaces.SpaceType.GIRL: "Girl",
+	Spaces.SpaceType.SPIN2WIN: "Spin to Win",
+	Spaces.SpaceType.TWINS: "Twins",
+	Spaces.SpaceType.STAR: "Pet",
+	Spaces.SpaceType.STOP: "Stop",
+	Spaces.SpaceType.BONUS: "Bonus",
+	Spaces.SpaceType.DEBT: "Debt",
+	Spaces.SpaceType.END: "Retirement",
+}
 
 
 func _ready() -> void:
-	randomize()
+	autoplay = OS.get_cmdline_user_args().has("--autoplay")
+	snapshot = OS.get_cmdline_user_args().has("--snapshot")
+	if autoplay:
+		seed(4304)
+	else:
+		randomize()
+	decks = DeckScript.new()
 	$spin_number.visible = false
+	if has_node("Board"):
+		$Board.visible = false
+	if has_node("Img3466"):
+		$Img3466.visible = false
 	_ensure_fourth_player()
 	_prepare_paths()
+	board = preload("res://Scripts/board_art.gd").new()
+	board.z_index = 1
+	add_child(board)
+	board.build($Spaces, college_entry, career_entry)
 	for player in _scene_players():
 		_seat_on(player, start_space)
 	camera.make_current()
+	camera.zoom = Vector2(PLAY_ZOOM, PLAY_ZOOM)
+	camera.position = _camera_goal()
+	ring = preload("res://Scripts/peg_ring.gd").new()
+	ring.z_index = 6
+	add_child(ring)
 	if OS.get_cmdline_user_args().has("--self-test"):
 		_self_test()
 		get_tree().quit()
 		return
+	if snapshot:
+		_take_snapshot()
+		return
+	if autoplay:
+		ui.presented.connect(_auto_answer)
+		print("AUTOPLAY seed 4304")
 	_boot()
+	if autoplay:
+		ui._on_start.call_deferred()
 
 
 func _self_test() -> void:
@@ -59,8 +120,106 @@ func _process(_delta: float) -> void:
 	var focus := start_space.global_position
 	if current_player:
 		focus = current_player.global_position
-	var desired := focus + Vector2(90, 0)
-	camera.position = camera.position.lerp(desired, 0.08)
+	if ring:
+		ring.follow(focus)
+	if board and current_player:
+		board.focus = current_player.space
+	if hold_camera:
+		return
+	var weight := 1.0 if autoplay else 0.07
+	camera.position = camera.position.lerp(_camera_goal(), weight)
+
+
+func _camera_goal() -> Vector2:
+	var focus := start_space.global_position
+	if current_player:
+		focus = current_player.global_position
+	var zoom := camera.zoom.x if camera else PLAY_ZOOM
+	var view := get_viewport_rect().size
+	return focus + Vector2(0.13 * view.x / zoom, -8)
+
+
+func _take_snapshot() -> void:
+	await _grab("/tmp/strife-setup.png")
+	ui.hide_setup()
+	var roster := _scene_players()
+	var names: PackedStringArray = ["Ada", "Bea", "Cal"]
+	for index in 3:
+		var player := roster[index]
+		player.visible = true
+		player.set_peg_name(names[index])
+		player.color = PEG_COLORS[index]
+		player.restyle()
+		seated.append(player)
+	roster[3].visible = false
+	_seat_on(seated[0], start_space)
+	_seat_on(seated[1], $Spaces/Space55)
+	_seat_on(seated[2], $Spaces/Space26)
+	seated[0].money = 100
+	seated[0].took_college = true
+	seated[1].money = 240
+	seated[1].job_name = "Artist"
+	seated[1].salary = 30
+	seated[1].married = true
+	seated[1].people = 2
+	seated[1].restyle()
+	seated[2].money = 380
+	seated[2].job_name = "Teacher"
+	seated[2].salary = 40
+	current_player = seated[1]
+	playing = true
+	board.focus = current_player.space
+	ui.present("Bea, spin.", PackedStringArray(), true, false)
+	ui.refresh(seated, current_player)
+	hold_camera = true
+	camera.zoom = Vector2(PLAY_ZOOM, PLAY_ZOOM)
+	camera.position = _camera_goal()
+	if ring:
+		ring.follow(current_player.global_position)
+	await _grab("/tmp/strife-play.png")
+	var sample: Array[Dictionary] = [
+		{"name": "Artist", "salary": 30, "kind": "career"},
+		{"name": "Doctor", "salary": 100, "kind": "college"},
+		{"name": "Villa", "cost": 160, "red": 200, "black": 120, "kind": "house"},
+	]
+	ui.present_cards(
+		"Ada, choose a card.",
+		sample,
+		PackedStringArray(["Artist, 30K", "Doctor, 100K", "Villa for 160K"]),
+		PackedStringArray(["Pass"])
+	)
+	await _grab("/tmp/strife-cards.png")
+	ui.present("Bea, spin.", PackedStringArray(), true, false)
+	_fit_table()
+	await _grab("/tmp/strife-table.png")
+	get_tree().quit(0)
+
+
+func _fit_table() -> void:
+	var min_p := Vector2(100000, 100000)
+	var max_p := Vector2(-100000, -100000)
+	for child in $Spaces.get_children():
+		if child is Spaces:
+			var at: Vector2 = (child as Spaces).global_position
+			min_p = min_p.min(at)
+			max_p = max_p.max(at)
+	var center := (min_p + max_p) * 0.5
+	var span := (max_p - min_p) + Vector2(140, 120)
+	var view := get_viewport_rect().size
+	var zx := (view.x * 0.72) / span.x
+	var zy := (view.y * 0.88) / span.y
+	var fitted := minf(zx, zy)
+	camera.zoom = Vector2(fitted, fitted)
+	camera.position = center + Vector2(view.x * 0.13 / fitted, 0)
+
+
+func _grab(path: String) -> void:
+	for _step in 3:
+		await get_tree().process_frame
+	await RenderingServer.frame_post_draw
+	var image := get_viewport().get_texture().get_image()
+	image.save_png(path)
+	print("SNAPSHOT ", path, " ", image.get_width(), " ", image.get_height())
 
 
 func _boot() -> void:
@@ -74,13 +233,20 @@ func _boot() -> void:
 		player.visible = index < count
 		if index < count:
 			player.set_peg_name(ui.setup_names[index])
+			player.color = PEG_COLORS[index % PEG_COLORS.size()]
+			player.restyle()
 			player.pet_name = PET_NAMES[index]
 			seated.append(player)
 	ui.hide_setup()
 	playing = true
 	_log("Everyone starts with 200K, one peg, and a pet.")
 	await _opening()
+	var turns_taken := 0
 	while not _all_retired():
+		turns_taken += 1
+		if turns_taken > 400:
+			_fail("the table did not retire")
+			return
 		current_player = seated[turn]
 		if current_player.retired:
 			_advance()
@@ -138,11 +304,19 @@ func _move(player: Player, steps: int) -> void:
 		var dest := await _step_target(space, player)
 		if dest == null:
 			break
-		var tween := create_tween()
-		tween.tween_property(player, "global_position", _peg_position(player, dest), 0.32).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-		await tween.finished
+		var dest_pos := _peg_position(player, dest)
+		if autoplay:
+			player.global_position = dest_pos
+		else:
+			player.hop()
+			var tween := create_tween()
+			tween.tween_property(player, "global_position", dest_pos, 0.26).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+			await tween.finished
+			if board:
+				board.burst(dest_pos, Color(0.98, 0.94, 0.82))
 		space = dest
 		player.space = space
+		ui.prompt_label.text = "%s  ·  %s" % [player.display_name, KIND_NAME.get(space.space_type, "")]
 		var more := step < steps - 1
 		if space.space_type == Spaces.SpaceType.PAYDAY and more:
 			player.money += player.salary
@@ -163,7 +337,9 @@ func _step_target(space: Spaces, player: Player) -> Spaces:
 		player.forced_index = -1
 	elif paths.size() > 1:
 		var labels := _branch_labels(space)
+		_show_fork(space)
 		index = await _choose("%s, which path?" % player.display_name, labels)
+		_clear_fork()
 	return space.get_node(paths[index]) as Spaces
 
 
@@ -204,7 +380,7 @@ func _resolve(player: Player) -> bool:
 			return false
 		Spaces.SpaceType.DEBT:
 			_charge(player, 50)
-			_log("%s pays 50K." % player.display_name)
+			_log("%s pays 50K on a debt space." % player.display_name)
 			return false
 		Spaces.SpaceType.STOP, Spaces.SpaceType.END:
 			return await _resolve_stop(player, space)
@@ -240,19 +416,23 @@ func _resolve_stop(player: Player, space: Spaces) -> bool:
 			return true
 		"family", "risky", "fork":
 			var labels := _branch_labels(space)
+			_show_fork(space)
 			var index := await _choose("%s, choose a path. Then spin again." % player.display_name, labels)
+			_clear_fork()
 			player.forced_index = index
 			_log("%s takes the %s." % [player.display_name, labels[index]])
 			return true
 		"night":
 			_charge(player, 100)
 			_log("%s pays 100K for night school." % player.display_name)
-			var offer := decks.draw("college")
+			var offer: Dictionary = decks.draw("college")
 			if offer.is_empty():
 				return true
-			var keep := await _choose(
-				"%s, night school offers %s (%dK). Keep it, or keep your current job?" % [player.display_name, offer["name"], offer["salary"]],
-				PackedStringArray(["Take %s" % offer["name"], "Keep %s" % (player.job_name if player.job_name != "" else "your job")])
+			var keep := await _choose_cards(
+				"%s, night school offers a new career." % player.display_name,
+				[offer],
+				PackedStringArray(["Take %s" % offer["name"]]),
+				PackedStringArray(["Keep %s" % (player.job_name if player.job_name != "" else "your job")])
 			)
 			if keep == 0:
 				if player.job_name != "":
@@ -283,9 +463,11 @@ func _house_stop(player: Player) -> void:
 		return
 	if picked == "Sell":
 		var names: PackedStringArray = []
+		var owned: Array[Dictionary] = []
 		for house in player.houses:
+			owned.append(house)
 			names.append("%s (red %dK, black %dK)" % [house["name"], house["red"], house["black"]])
-		var which := await _choose("%s, choose a house to sell." % player.display_name, names)
+		var which := await _choose_cards("%s, choose a house to sell." % player.display_name, owned, names, PackedStringArray())
 		var house: Dictionary = player.houses[which]
 		player.houses.remove_at(which)
 		await _wait_spin(player, "Spin to sell %s. Red %dK, black %dK." % [house["name"], house["red"], house["black"]])
@@ -296,8 +478,8 @@ func _house_stop(player: Player) -> void:
 		decks.to_bottom("houses", house)
 		_log("%s sells %s for %dK." % [player.display_name, house["name"], price])
 		return
-	var first := decks.draw("houses")
-	var second := decks.draw("houses")
+	var first: Dictionary = decks.draw("houses")
+	var second: Dictionary = decks.draw("houses")
 	var offer: PackedStringArray = []
 	var cards: Array[Dictionary] = []
 	if not first.is_empty():
@@ -309,8 +491,7 @@ func _house_stop(player: Player) -> void:
 	if cards.is_empty():
 		_log("No houses are left.")
 		return
-	offer.append("Pass")
-	var which := await _choose("%s, choose a house to buy." % player.display_name, offer)
+	var which := await _choose_cards("%s, choose a house to buy." % player.display_name, cards, offer, PackedStringArray(["Pass"]))
 	if which >= cards.size():
 		for card in cards:
 			decks.to_bottom("houses", card)
@@ -409,8 +590,8 @@ func _finale() -> void:
 
 
 func _pick_job(player: Player, pile: String, prompt: String) -> void:
-	var first := decks.draw(pile)
-	var second := decks.draw(pile)
+	var first: Dictionary = decks.draw(pile)
+	var second: Dictionary = decks.draw(pile)
 	var cards: Array[Dictionary] = []
 	var labels: PackedStringArray = []
 	for card in [first, second]:
@@ -420,18 +601,18 @@ func _pick_job(player: Player, pile: String, prompt: String) -> void:
 		labels.append("%s, %dK" % [card["name"], card["salary"]])
 	if cards.is_empty():
 		return
-	var index := await _choose("%s, %s." % [player.display_name, prompt], labels)
+	var index := await _choose_cards("%s, %s." % [player.display_name, prompt], cards, labels, PackedStringArray())
 	var chosen: Dictionary = cards[index]
 	player.job_name = chosen["name"]
 	player.salary = int(chosen["salary"])
 	for card_index in cards.size():
 		if card_index != index:
 			decks.to_bottom(pile, cards[card_index])
-	_log("%s becomes a %s for %dK." % [player.display_name, player.job_name, player.salary])
+	_log("%s becomes %s for %dK." % [player.display_name, _job_title(player.job_name), player.salary])
 
 
 func _draw_kept(player: Player, pile: String) -> void:
-	var card := decks.draw(pile)
+	var card: Dictionary = decks.draw(pile)
 	if card.is_empty():
 		_log("The deck is empty.")
 		return
@@ -441,6 +622,7 @@ func _draw_kept(player: Player, pile: String) -> void:
 	else:
 		player.actions.append(card)
 	_log("%s keeps %s." % [player.display_name, card["name"]])
+	ui.show_drawn(card)
 
 
 func _apply_card(player: Player, card: Dictionary) -> void:
@@ -522,20 +704,34 @@ func _choose(prompt: String, options: PackedStringArray) -> int:
 	return ui.last_index
 
 
+func _choose_cards(prompt: String, cards: Array, labels: PackedStringArray, extra: PackedStringArray) -> int:
+	ui.present_cards(prompt, cards, labels, extra)
+	_refresh()
+	await ui.acted
+	return ui.last_index
+
+
 func _roll() -> int:
 	return randi_range(1, 10)
 
 
 func _flick(final_value: int) -> void:
-	for tick in 8:
-		ui.set_readout(str((tick % 10) + 1), Color(0.965, 0.929, 0.847))
-		await get_tree().create_timer(0.04).timeout
-	_show_spin(final_value)
+	ui.show_spin(final_value, not autoplay)
+	if autoplay:
+		return
+	await get_tree().create_timer(0.72).timeout
 
 
 func _show_spin(value: int) -> void:
-	var red := value % 2 == 1
-	ui.set_readout("%d   %s" % [value, "red" if red else "black"], Color(0.86, 0.42, 0.36) if red else Color(0.82, 0.84, 0.88))
+	ui.show_spin(value, false)
+
+
+func _job_title(job_name: String) -> String:
+	if job_name.is_empty():
+		return "a worker"
+	var first := job_name.substr(0, 1).to_lower()
+	var article := "an" if "aeiou".contains(first) else "a"
+	return "%s %s" % [article, job_name]
 
 
 func _color_name(value: int) -> String:
@@ -780,8 +976,123 @@ func _all_retired() -> bool:
 
 
 func _refresh() -> void:
+	for player in seated:
+		var previous: int = int(last_money.get(player, player.money))
+		var delta := player.money - previous
+		player.modulate = Color(0.75, 0.75, 0.75) if player.retired else Color.WHITE
+		if playing and delta != 0 and not autoplay:
+			_popup(player, delta)
+			if board:
+				var spark := Color(0.95, 0.78, 0.32) if delta > 0 else Color(0.90, 0.36, 0.30)
+				board.burst(player.global_position, spark)
+		last_money[player] = player.money
 	ui.refresh(seated, current_player)
+
+
+func _popup(player: Player, delta: int) -> void:
+	var screen: Vector2 = get_viewport().get_canvas_transform() * player.global_position
+	var text := "+%dK" % delta if delta > 0 else "%dK" % delta
+	var color := Color(0.55, 0.84, 0.62) if delta > 0 else Color(0.92, 0.46, 0.4)
+	ui.popup(screen, text, color)
+
+
+func _show_fork(space: Spaces) -> void:
+	if ring == null:
+		return
+	var points: Array[Vector2] = []
+	for path in space.next_spaces:
+		var node := space.get_node(path) as Spaces
+		if node:
+			points.append(node.global_position)
+	ring.set_marks(points)
+
+
+func _clear_fork() -> void:
+	if ring:
+		var empty: Array[Vector2] = []
+		ring.set_marks(empty)
 
 
 func _log(line: String) -> void:
 	ui.add_log(line)
+	if autoplay:
+		print(line)
+
+
+func _auto_answer() -> void:
+	prompts += 1
+	if prompts > 2500:
+		_fail("too many decisions")
+		return
+	if prompts % 200 == 0 and current_player:
+		var where: String = current_player.space.name if current_player.space else "?"
+		print("PROGRESS ", prompts, " ", current_player.display_name, " ", where)
+	var buttons: Array[String] = []
+	for caption in ui.choice_texts():
+		buttons.append(caption)
+	if buttons.is_empty() and not ui.spin_button.visible:
+		return
+	var prompt := str(ui.prompt_label.text)
+	if "wins with" in prompt or "tie with" in prompt:
+		print("RESULT")
+		for line in prompt.split("\n"):
+			print(line)
+		get_tree().quit(0)
+		return
+	if buttons.is_empty() and ui.repay_button.visible and current_player and not did_repay.has(current_player):
+		did_repay[current_player] = true
+		ui._emit("repay", -1)
+		return
+	if buttons.is_empty():
+		ui._emit("spin", -1)
+		return
+	ui._emit("choice", _policy(prompt, buttons))
+
+
+func _policy(prompt: String, buttons: Array[String]) -> int:
+	var lower := prompt.to_lower()
+	if "college or career" in lower:
+		return 0 if seated.is_empty() or current_player == seated[0] else 1
+	if _has_button(buttons, "Family path"):
+		return _button_index(buttons, "Family path") if current_player == seated[0] else _button_index(buttons, "Life path")
+	if _has_button(buttons, "Risky road"):
+		return _button_index(buttons, "Risky road") if current_player == seated[0] else _button_index(buttons, "Safe route")
+	if _has_button(buttons, "Upper path") or _has_button(buttons, "Lower path"):
+		return 0
+	if "buy a house" in lower:
+		if current_player and current_player.houses.size() > 0 and not sold_once:
+			sold_once = true
+			return _button_index(buttons, "Sell")
+		if current_player and current_player.houses.is_empty():
+			return _button_index(buttons, "Buy")
+		return _button_index(buttons, "Pass")
+	if "night school" in lower:
+		return 0
+	if "millionaire" in lower or "countryside" in lower:
+		return 0
+	if "second token" in lower:
+		return mini(4, buttons.size() - 1)
+	if "token" in lower:
+		return mini(2, buttons.size() - 1)
+	return 0
+
+
+func _has_button(buttons: Array[String], needle: String) -> bool:
+	for label in buttons:
+		if needle.to_lower() in label.to_lower():
+			return true
+	return false
+
+
+func _button_index(buttons: Array[String], needle: String) -> int:
+	for index in buttons.size():
+		if needle.to_lower() in buttons[index].to_lower():
+			return index
+	return 0
+
+
+func _fail(reason: String) -> void:
+	var who := current_player.display_name if current_player else "?"
+	var where: String = current_player.space.name if current_player and current_player.space else "?"
+	print("AUTOPLAY_FAIL ", reason, " ", who, " ", where)
+	get_tree().quit(1)

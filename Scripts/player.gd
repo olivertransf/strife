@@ -3,7 +3,9 @@ class_name Player
 
 const CAR_CAPACITY := 6
 
-var color: Color
+var color: Color = Color(0.86, 0.27, 0.22)
+var _back
+var _badge
 var money: int = 200
 var job: Job
 var title: String
@@ -31,14 +33,30 @@ var space: Spaces
 func _ready() -> void:
 	display_name = name
 	frame = 0
-	scale = Vector2(0.62, 0.62)
-	z_index = 5
+	scale = Vector2(0.55, 0.55)
+	z_index = 8
+	texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
 	var label := $player_name as RichTextLabel
+	label.text = ""
+	label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	label.offset_top = -72
+	label.offset_bottom = -44
 	label.add_theme_color_override("default_color", Color(0.98, 0.96, 0.9))
-	label.add_theme_color_override("font_outline_color", Color(0.05, 0.05, 0.05))
-	label.add_theme_constant_override("outline_size", 6)
+	label.add_theme_color_override("font_outline_color", Color(0.08, 0.05, 0.03))
+	label.add_theme_constant_override("outline_size", 8)
+	label.add_theme_font_size_override("normal_font_size", 22)
 	label.scroll_active = false
 	label.autowrap_mode = TextServer.AUTOWRAP_OFF
+	label.z_index = 3
+	var decal := preload("res://Scripts/peg_decal.gd")
+	_back = decal.new()
+	_back.behind = true
+	_back.show_behind_parent = true
+	_back.z_index = -1
+	add_child(_back)
+	_badge = decal.new()
+	_badge.z_index = 2
+	add_child(_badge)
 
 
 func set_peg_name(peg_name: String) -> void:
@@ -48,11 +66,26 @@ func set_peg_name(peg_name: String) -> void:
 	label.add_text(peg_name)
 
 
+func restyle() -> void:
+	if _back:
+		_back.queue_redraw()
+	if _badge:
+		_badge.queue_redraw()
+
+
+func hop() -> void:
+	var rest := Vector2(0.55, 0.55)
+	scale = Vector2(0.68, 0.4)
+	var tween := create_tween()
+	tween.tween_property(self, "scale", rest, 0.16).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+
+
 func add_people(count: int) -> int:
 	var room := CAR_CAPACITY - people
 	var added := mini(count, maxi(room, 0))
 	people += added
 	babies += added
+	restyle()
 	return added
 
 

@@ -66,24 +66,24 @@ func _pile(pile: String) -> Array[Dictionary]:
 func _career_source(is_college: bool) -> Array[Dictionary]:
 	if is_college:
 		return [
-			_job("Doctor", 100),
-			_job("Lawyer", 90),
-			_job("Accountant", 80),
-			_job("Scientist", 80),
-			_job("Designer", 70),
-			_job("Architect", 70),
-			_job("Engineer", 60),
-			_job("Journalist", 60),
+			_job("Doctor", 100, true),
+			_job("Lawyer", 90, true),
+			_job("Accountant", 80, true),
+			_job("Scientist", 80, true),
+			_job("Designer", 70, true),
+			_job("Architect", 70, true),
+			_job("Engineer", 60, true),
+			_job("Journalist", 60, true),
 		]
 	return [
-		_job("Teacher", 40),
-		_job("Mechanic", 40),
-		_job("Athlete", 50),
-		_job("Artist", 30),
-		_job("Mail carrier", 20),
-		_job("Salesperson", 30),
-		_job("Chef", 30),
-		_job("Ranger", 40),
+		_job("Teacher", 40, false),
+		_job("Mechanic", 40, false),
+		_job("Athlete", 50, false),
+		_job("Artist", 30, false),
+		_job("Mail carrier", 20, false),
+		_job("Salesperson", 30, false),
+		_job("Chef", 30, false),
+		_job("Ranger", 40, false),
 	]
 
 
@@ -134,12 +134,16 @@ func _pet_source() -> Array[Dictionary]:
 	]
 
 
-func _job(job_name: String, salary: int) -> Dictionary:
-	return {"name": job_name, "salary": salary}
+func _job(job_name: String, salary: int, college: bool) -> Dictionary:
+	return {
+		"name": job_name,
+		"salary": salary,
+		"kind": "college" if college else "career",
+	}
 
 
 func _house(house_name: String, cost: int, red_sale: int, black_sale: int) -> Dictionary:
-	return {"name": house_name, "cost": cost, "red": red_sale, "black": black_sale}
+	return {"name": house_name, "cost": cost, "red": red_sale, "black": black_sale, "kind": "house"}
 
 
 func _card(card_name: String, kind: String, effect: String, amount: int) -> Dictionary:

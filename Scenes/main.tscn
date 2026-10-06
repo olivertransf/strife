@@ -959,6 +959,7 @@ texture = ExtResource("6_d1ilt")
 texture = ExtResource("6_344ge")
 
 [node name="Img3466" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.28235295)
 z_index = -1
 position = Vector2(328.43747, 331.87503)
@@ -973,6 +974,7 @@ zoom = Vector2(1.15, 1.15)
 [node name="Control" parent="." instance=ExtResource("6_21xkr")]
 
 [node name="Board" type="Node2D" parent="."]
+visible = false
 z_index = -1
 
 [node name="Circle0004" type="Sprite2D" parent="Board"]
