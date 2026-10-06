@@ -10,15 +10,21 @@ func shot(mode: String, target: Vector3, span: float) -> void:
 		"overview", "score":
 			want = target + Vector3(0, span * 0.72, span * 0.42)
 		"follow":
-			want = target + Vector3(-1.6, 4.2, 6.2)
+			want = target + Vector3(-2.4, 5.6, 7.4)
 		"card":
-			want = target + Vector3(1.2, 3.4, 4.6)
+			want = target + Vector3(1.4, 4.2, 5.6)
 		"wheel":
 			want = target + Vector3(2.2, 2.6, 3.4)
 		"fork":
 			want = target + Vector3(-1.2, 4.6, 5.2)
 		_:
 			want = target + Vector3(0, 8, 8)
+
+
+func follow(target: Vector3) -> void:
+	var delta := target - look
+	look = target
+	want += delta
 
 
 func snap() -> void:
@@ -28,6 +34,6 @@ func snap() -> void:
 
 
 func _process(delta: float) -> void:
-	global_position = global_position.lerp(want, 1.0 - exp(-6.0 * delta))
+	global_position = global_position.lerp(want, 1.0 - exp(-3.4 * delta))
 	if global_position.distance_to(look) > 0.05:
 		look_at(look, Vector3.UP)

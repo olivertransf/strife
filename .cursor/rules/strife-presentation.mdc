@@ -1,0 +1,14 @@
+---
+description: Keep Strife cars on the track, events on banners, and motion slow enough to read
+alwaysApply: true
+---
+
+# Strife presentation
+
+Cars sit on the space center. When several share a space, use a small ring (about 0.2). Do not park them with a multi-unit offset.
+
+Face each car along the road it just traveled. Direction marks on the roads point to the next space. A ring marks the space in play.
+
+Every resolved event gets a banner: who, what happened, and the amount. The player strip shows cash and job. Do not cover the track with a large status panel.
+
+Moves, the spinner, and cards use eased tweens long enough to read. The camera glides to the next shot. Do not snap it during play.
