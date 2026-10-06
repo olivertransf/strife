@@ -1,6 +1,23 @@
-node_modules
-dist
+# Godot 4+ specific ignores
+.godot/
+
 .DS_Store
-*.local
-.vite
-coverage
+
+# Private photo of the printed board. The spaces in the scene are the map.
+**/IMG_3466.jpeg
+**/IMG_3466.jpeg.import
+.nomedia
+
+# Godot-specific ignores
+.import/
+export.cfg
+export_credentials.cfg
+*.tmp
+
+# Imported translations (automatically generated from CSV files)
+*.translation
+
+# Mono-specific ignores
+.mono/
+data_*/
+mono_crash.*.json

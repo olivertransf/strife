@@ -1,0 +1,179 @@
+[gd_scene load_steps=2 format=3 uid="uid://chchbq6scwnmt"]
+
+[ext_resource type="Script" uid="uid://bjvj7ycjjgvfd" path="res://Scripts/ui.gd" id="1_ui"]
+
+[node name="Control" type="CanvasLayer"]
+layer = 10
+script = ExtResource("1_ui")
+
+[node name="Root" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="Root"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 0.74
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+offset_left = -12.0
+
+[node name="Margin" type="MarginContainer" parent="Root/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBox" type="VBoxContainer" parent="Root/Panel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Root/Panel/Margin/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Strife"
+
+[node name="Prompt" type="Label" parent="Root/Panel/Margin/VBox"]
+layout_mode = 2
+autowrap_mode = 3
+text = "Set the table."
+
+[node name="Readout" type="Label" parent="Root/Panel/Margin/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = ""
+
+[node name="Choices" type="VBoxContainer" parent="Root/Panel/Margin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Row" type="HBoxContainer" parent="Root/Panel/Margin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Spin" type="Button" parent="Root/Panel/Margin/VBox/Row"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Spin"
+
+[node name="Repay" type="Button" parent="Root/Panel/Margin/VBox/Row"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Repay 60K"
+
+[node name="Players" type="VBoxContainer" parent="Root/Panel/Margin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Log" type="RichTextLabel" parent="Root/Panel/Margin/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = false
+scroll_following = true
+text = ""
+
+[node name="Setup" type="Panel" parent="Root"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Card" type="Panel" parent="Root/Setup"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -230.0
+offset_top = -280.0
+offset_right = 230.0
+offset_bottom = 280.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="Root/Setup/Card"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Heading" type="Label" parent="Root/Setup/Card/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Who is playing?"
+
+[node name="Blurb" type="Label" parent="Root/Setup/Card/VBox"]
+layout_mode = 2
+autowrap_mode = 3
+text = "Seat order is turn order. Each player starts with 200K, one peg, and a pet."
+
+[node name="Counts" type="HBoxContainer" parent="Root/Setup/Card/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Two" type="Button" parent="Root/Setup/Card/VBox/Counts"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "2"
+
+[node name="Three" type="Button" parent="Root/Setup/Card/VBox/Counts"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "3"
+
+[node name="Four" type="Button" parent="Root/Setup/Card/VBox/Counts"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "4"
+
+[node name="Names" type="VBoxContainer" parent="Root/Setup/Card/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Name1" type="LineEdit" parent="Root/Setup/Card/VBox/Names"]
+layout_mode = 2
+placeholder_text = "Player 1"
+text = "Ada"
+
+[node name="Name2" type="LineEdit" parent="Root/Setup/Card/VBox/Names"]
+layout_mode = 2
+placeholder_text = "Player 2"
+text = "Bea"
+
+[node name="Name3" type="LineEdit" parent="Root/Setup/Card/VBox/Names"]
+layout_mode = 2
+placeholder_text = "Player 3"
+text = "Cal"
+
+[node name="Name4" type="LineEdit" parent="Root/Setup/Card/VBox/Names"]
+layout_mode = 2
+placeholder_text = "Player 4"
+text = "Dee"
+
+[node name="Start" type="Button" parent="Root/Setup/Card/VBox"]
+layout_mode = 2
+text = "Start"
