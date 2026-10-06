@@ -1,0 +1,14 @@
+[
+  {"id": "c1", "title": "Line Cook", "text": "The dinner rush is your whole personality.", "salary": 30},
+  {"id": "c2", "title": "Bike Courier", "text": "Rain just means the city is paying you extra.", "salary": 40},
+  {"id": "c3", "title": "Record Clerk", "text": "You know where everything is, including the gossip.", "salary": 40},
+  {"id": "c4", "title": "Shift Lead", "text": "You unlock the shop and lock it again.", "salary": 50},
+  {"id": "c5", "title": "Studio Hand", "text": "Cables, coffee, and the occasional credit.", "salary": 50},
+  {"id": "c6", "title": "Route Driver", "text": "Same streets, better stories every week.", "salary": 50},
+  {"id": "c7", "title": "Floor Nurse", "text": "Nights are long and the shoes are older.", "salary": 60},
+  {"id": "c8", "title": "Site Lead", "text": "Hard hats, clipboards, and a radio that never sleeps.", "salary": 60},
+  {"id": "c9", "title": "Shop Mechanic", "text": "If it rattles, it ends up in your bay.", "salary": 70},
+  {"id": "c10", "title": "Cabin Crew", "text": "You live out of a neatly packed carry-on.", "salary": 80},
+  {"id": "c11", "title": "Retail Buyer", "text": "You can tell what will sell by the weight of it.", "salary": 40},
+  {"id": "c12", "title": "Town Reporter", "text": "Everyone returns your calls, eventually.", "salary": 50}
+]

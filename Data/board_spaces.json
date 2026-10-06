@@ -1,0 +1,1084 @@
+{
+  "Space0": {
+    "type": "start",
+    "stop": "start",
+    "babies": 0,
+    "next": [
+      "Space1",
+      "Space122"
+    ],
+    "label": "Start"
+  },
+  "Space1": {
+    "type": "payday",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space2"
+    ]
+  },
+  "Space2": {
+    "type": "action",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space3"
+    ]
+  },
+  "Space3": {
+    "type": "house",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space4"
+    ]
+  },
+  "Space4": {
+    "type": "pet",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space5"
+    ]
+  },
+  "Space5": {
+    "type": "action",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space6"
+    ]
+  },
+  "Space6": {
+    "type": "payday",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space7"
+    ]
+  },
+  "Space7": {
+    "type": "wheel",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space8"
+    ]
+  },
+  "Space8": {
+    "type": "action",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space9"
+    ]
+  },
+  "Space9": {
+    "type": "payday",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space10"
+    ]
+  },
+  "Space10": {
+    "type": "action",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space11"
+    ]
+  },
+  "Space11": {
+    "type": "house",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space12"
+    ]
+  },
+  "Space12": {
+    "type": "pet",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space13"
+    ]
+  },
+  "Space13": {
+    "type": "payday",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space14"
+    ]
+  },
+  "Space14": {
+    "type": "house",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space15"
+    ]
+  },
+  "Space15": {
+    "type": "pet",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space16"
+    ]
+  },
+  "Space16": {
+    "type": "action",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space17"
+    ]
+  },
+  "Space17": {
+    "type": "payday",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space18"
+    ]
+  },
+  "Space18": {
+    "type": "wheel",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space19"
+    ]
+  },
+  "Space19": {
+    "type": "action",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space20"
+    ]
+  },
+  "Space20": {
+    "type": "payday",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space21"
+    ]
+  },
+  "Space21": {
+    "type": "action",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space22"
+    ]
+  },
+  "Space22": {
+    "type": "house",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space23"
+    ]
+  },
+  "Space23": {
+    "type": "pet",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space24"
+    ]
+  },
+  "Space24": {
+    "type": "stop",
+    "stop": "married",
+    "babies": 0,
+    "next": [
+      "Space25"
+    ],
+    "label": "Married"
+  },
+  "Space25": {
+    "type": "payday",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space26"
+    ]
+  },
+  "Space26": {
+    "type": "wheel",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space27"
+    ]
+  },
+  "Space27": {
+    "type": "action",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space28"
+    ]
+  },
+  "Space28": {
+    "type": "payday",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space29"
+    ]
+  },
+  "Space29": {
+    "type": "action",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space30"
+    ]
+  },
+  "Space30": {
+    "type": "house",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space31"
+    ]
+  },
+  "Space31": {
+    "type": "pet",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space32"
+    ]
+  },
+  "Space32": {
+    "type": "action",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space33"
+    ]
+  },
+  "Space33": {
+    "type": "payday",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space34"
+    ]
+  },
+  "Space34": {
+    "type": "wheel",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space35"
+    ]
+  },
+  "Space35": {
+    "type": "action",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space36"
+    ]
+  },
+  "Space36": {
+    "type": "stop",
+    "stop": "family",
+    "babies": 0,
+    "next": [
+      "Space37",
+      "Space124"
+    ],
+    "label": "Family"
+  },
+  "Space37": {
+    "type": "house",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space38"
+    ]
+  },
+  "Space38": {
+    "type": "pet",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space39"
+    ]
+  },
+  "Space39": {
+    "type": "action",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space40"
+    ]
+  },
+  "Space40": {
+    "type": "payday",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space41"
+    ]
+  },
+  "Space41": {
+    "type": "wheel",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space42"
+    ]
+  },
+  "Space42": {
+    "type": "action",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space43"
+    ]
+  },
+  "Space43": {
+    "type": "house",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space44"
+    ]
+  },
+  "Space44": {
+    "type": "pet",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space45"
+    ]
+  },
+  "Space45": {
+    "type": "action",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space46"
+    ]
+  },
+  "Space46": {
+    "type": "payday",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space47"
+    ]
+  },
+  "Space47": {
+    "type": "wheel",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space48"
+    ]
+  },
+  "Space48": {
+    "type": "action",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space49"
+    ]
+  },
+  "Space49": {
+    "type": "payday",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space50"
+    ]
+  },
+  "Space50": {
+    "type": "action",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space51"
+    ]
+  },
+  "Space51": {
+    "type": "house",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space52"
+    ]
+  },
+  "Space52": {
+    "type": "pet",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space53"
+    ]
+  },
+  "Space53": {
+    "type": "action",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space54"
+    ]
+  },
+  "Space54": {
+    "type": "payday",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space55"
+    ]
+  },
+  "Space55": {
+    "type": "wheel",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space56"
+    ]
+  },
+  "Space56": {
+    "type": "stop",
+    "stop": "risky",
+    "babies": 0,
+    "next": [
+      "Space57",
+      "Space64"
+    ],
+    "label": "Risky"
+  },
+  "Space57": {
+    "type": "action",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space58"
+    ]
+  },
+  "Space58": {
+    "type": "action",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space59"
+    ]
+  },
+  "Space59": {
+    "type": "action",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space60"
+    ]
+  },
+  "Space60": {
+    "type": "action",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space61"
+    ]
+  },
+  "Space61": {
+    "type": "action",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space62"
+    ]
+  },
+  "Space62": {
+    "type": "action",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space63"
+    ]
+  },
+  "Space63": {
+    "type": "action",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space75"
+    ]
+  },
+  "Space64": {
+    "type": "payday",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space65"
+    ]
+  },
+  "Space65": {
+    "type": "house",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space66"
+    ]
+  },
+  "Space66": {
+    "type": "payday",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space67"
+    ]
+  },
+  "Space67": {
+    "type": "pet",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space68"
+    ]
+  },
+  "Space68": {
+    "type": "payday",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space70"
+    ]
+  },
+  "Space70": {
+    "type": "house",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space71"
+    ]
+  },
+  "Space71": {
+    "type": "payday",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space72"
+    ]
+  },
+  "Space72": {
+    "type": "pet",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space73"
+    ]
+  },
+  "Space73": {
+    "type": "payday",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space74"
+    ]
+  },
+  "Space74": {
+    "type": "house",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space75"
+    ]
+  },
+  "Space75": {
+    "type": "payday",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space76"
+    ]
+  },
+  "Space76": {
+    "type": "wheel",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space77"
+    ]
+  },
+  "Space77": {
+    "type": "action",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space78"
+    ]
+  },
+  "Space78": {
+    "type": "payday",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space79"
+    ]
+  },
+  "Space79": {
+    "type": "action",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space80"
+    ]
+  },
+  "Space80": {
+    "type": "house",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space81"
+    ]
+  },
+  "Space81": {
+    "type": "pet",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space82"
+    ]
+  },
+  "Space82": {
+    "type": "stop",
+    "stop": "night",
+    "babies": 0,
+    "next": [
+      "Space83"
+    ],
+    "label": "Night"
+  },
+  "Space83": {
+    "type": "payday",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space84"
+    ]
+  },
+  "Space84": {
+    "type": "wheel",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space85"
+    ]
+  },
+  "Space85": {
+    "type": "action",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space86"
+    ]
+  },
+  "Space86": {
+    "type": "payday",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space87"
+    ]
+  },
+  "Space87": {
+    "type": "action",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space88"
+    ]
+  },
+  "Space88": {
+    "type": "house",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space89"
+    ]
+  },
+  "Space89": {
+    "type": "pet",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space90"
+    ]
+  },
+  "Space90": {
+    "type": "action",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space91"
+    ]
+  },
+  "Space91": {
+    "type": "payday",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space92"
+    ]
+  },
+  "Space92": {
+    "type": "wheel",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space93"
+    ]
+  },
+  "Space93": {
+    "type": "action",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space94"
+    ]
+  },
+  "Space94": {
+    "type": "stop",
+    "stop": "retirement",
+    "babies": 0,
+    "next": [
+      "Space95",
+      "Space100"
+    ],
+    "label": "Retire"
+  },
+  "Space95": {
+    "type": "park",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space96"
+    ]
+  },
+  "Space96": {
+    "type": "park",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space97"
+    ]
+  },
+  "Space97": {
+    "type": "park",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space98"
+    ]
+  },
+  "Space98": {
+    "type": "park",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space133"
+    ]
+  },
+  "Space133": {
+    "type": "park",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space134"
+    ]
+  },
+  "Space134": {
+    "type": "park",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space99"
+    ]
+  },
+  "Space99": {
+    "type": "end",
+    "stop": "",
+    "babies": 0,
+    "next": [],
+    "label": "Countryside"
+  },
+  "Space100": {
+    "type": "park",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space101"
+    ]
+  },
+  "Space101": {
+    "type": "park",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space102"
+    ]
+  },
+  "Space102": {
+    "type": "park",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space103"
+    ]
+  },
+  "Space103": {
+    "type": "park",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space104"
+    ]
+  },
+  "Space104": {
+    "type": "park",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space105"
+    ]
+  },
+  "Space105": {
+    "type": "park",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space106"
+    ]
+  },
+  "Space106": {
+    "type": "park",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space107"
+    ]
+  },
+  "Space107": {
+    "type": "park",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space108"
+    ]
+  },
+  "Space108": {
+    "type": "park",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space109"
+    ]
+  },
+  "Space109": {
+    "type": "park",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space110"
+    ]
+  },
+  "Space110": {
+    "type": "park",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space111"
+    ]
+  },
+  "Space111": {
+    "type": "park",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space112"
+    ]
+  },
+  "Space112": {
+    "type": "park",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space113"
+    ]
+  },
+  "Space113": {
+    "type": "park",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space114"
+    ]
+  },
+  "Space114": {
+    "type": "park",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space115"
+    ]
+  },
+  "Space115": {
+    "type": "park",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space116"
+    ]
+  },
+  "Space116": {
+    "type": "park",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space117"
+    ]
+  },
+  "Space117": {
+    "type": "park",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space118"
+    ]
+  },
+  "Space118": {
+    "type": "park",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space119"
+    ]
+  },
+  "Space119": {
+    "type": "park",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space120"
+    ]
+  },
+  "Space120": {
+    "type": "park",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space121"
+    ]
+  },
+  "Space121": {
+    "type": "end",
+    "stop": "",
+    "babies": 0,
+    "next": [],
+    "label": "Mansion"
+  },
+  "Space122": {
+    "type": "pet",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space123"
+    ]
+  },
+  "Space123": {
+    "type": "stop",
+    "stop": "graduation",
+    "babies": 0,
+    "next": [
+      "Space13"
+    ],
+    "label": "Grad"
+  },
+  "Space124": {
+    "type": "action",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space125"
+    ]
+  },
+  "Space125": {
+    "type": "boy",
+    "stop": "",
+    "babies": 1,
+    "next": [
+      "Space126"
+    ]
+  },
+  "Space126": {
+    "type": "wheel",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space127"
+    ]
+  },
+  "Space127": {
+    "type": "action",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space128"
+    ]
+  },
+  "Space128": {
+    "type": "stop",
+    "stop": "babies",
+    "babies": 0,
+    "next": [
+      "Space129"
+    ],
+    "label": "Babies"
+  },
+  "Space129": {
+    "type": "action",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space130"
+    ]
+  },
+  "Space130": {
+    "type": "girl",
+    "stop": "",
+    "babies": 1,
+    "next": [
+      "Space131"
+    ]
+  },
+  "Space131": {
+    "type": "pet",
+    "stop": "",
+    "babies": 0,
+    "next": [
+      "Space132"
+    ]
+  },
+  "Space132": {
+    "type": "twins",
+    "stop": "",
+    "babies": 2,
+    "next": [
+      "Space43"
+    ]
+  }
+}

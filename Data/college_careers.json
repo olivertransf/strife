@@ -1,0 +1,14 @@
+[
+  {"id": "g1", "title": "Ship Surgeon", "text": "You studied long enough to charge for the calm voice.", "salary": 80},
+  {"id": "g2", "title": "City Architect", "text": "You draw streets people have not walked yet.", "salary": 90},
+  {"id": "g3", "title": "Lab Chemist", "text": "The interesting work happens in small glass.", "salary": 90},
+  {"id": "g4", "title": "Public Defender", "text": "You argue for people who cannot afford the hour.", "salary": 100},
+  {"id": "g5", "title": "Bridge Engineer", "text": "You trust math more than the weather.", "salary": 100},
+  {"id": "g6", "title": "Wildlife Vet", "text": "House calls sometimes involve a fence.", "salary": 110},
+  {"id": "g7", "title": "Orchestra Conductor", "text": "Eighty people watch your hands for a living.", "salary": 110},
+  {"id": "g8", "title": "Patent Lawyer", "text": "You translate inventions into sentences that hold.", "salary": 120},
+  {"id": "g9", "title": "Airline Pilot", "text": "The view is part of the contract.", "salary": 130},
+  {"id": "g10", "title": "Game Director", "text": "You ship worlds and then patch them.", "salary": 140},
+  {"id": "g11", "title": "Heart Surgeon", "text": "The room goes quiet when you ask for the next tool.", "salary": 150},
+  {"id": "g12", "title": "Studio Founder", "text": "Your name is on the door and the payroll.", "salary": 160}
+]

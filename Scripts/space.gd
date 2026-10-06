@@ -15,9 +15,13 @@ enum SpaceType {
 	STOP,
 	BONUS,
 	DEBT,
-	END
+	END,
+	PET,
+	PARK
 }
 
 @export var space_type: SpaceType
+@export var stop_kind: String = ""
+@export var baby_count: int = 0
 
 @export var next_spaces: Array[NodePath] = []

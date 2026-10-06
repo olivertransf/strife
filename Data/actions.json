@@ -1,0 +1,22 @@
+[
+  {"id": "a1", "title": "Street Fair", "text": "Your booth sells out before noon.", "effect": {"op": "collect", "amount": 40}},
+  {"id": "a2", "title": "Parking Ticket", "text": "The meter ran out during the good part.", "effect": {"op": "pay", "amount": 20}},
+  {"id": "a3", "title": "Family Reunion", "text": "Everyone chips in for the long table.", "effect": {"op": "collect_each", "amount": 10}},
+  {"id": "a4", "title": "Group Gift", "text": "You cover the bill and smile anyway.", "effect": {"op": "pay_each", "amount": 10}},
+  {"id": "a5", "title": "Surprise Twins", "text": "The spare room is no longer spare.", "effect": {"op": "babies", "count": 2}},
+  {"id": "a6", "title": "Headhunter", "text": "A college offer lands on your kitchen table.", "effect": {"op": "swap_career"}},
+  {"id": "a7", "title": "Cash Advance", "text": "The bank calls it help. The interest disagrees.", "effect": {"op": "loan"}},
+  {"id": "a8", "title": "Bake Sale", "text": "The neighborhood clears the last tray.", "effect": {"op": "collect", "amount": 20}},
+  {"id": "a9", "title": "Roof Leak", "text": "Buckets were a temporary business plan.", "effect": {"op": "pay", "amount": 40}},
+  {"id": "a10", "title": "Birthday Lap", "text": "Friends pass you an envelope each.", "effect": {"op": "collect_each", "amount": 20}},
+  {"id": "a11", "title": "Wedding Toast", "text": "You buy the room another round.", "effect": {"op": "pay_each", "amount": 10}},
+  {"id": "a12", "title": "New Niece", "text": "Someone hands you a very small person.", "effect": {"op": "babies", "count": 1}},
+  {"id": "a13", "title": "Bonus Gig", "text": "The weekend work actually pays.", "effect": {"op": "collect", "amount": 60}},
+  {"id": "a14", "title": "Fender Bend", "text": "The other driver is already on the phone.", "effect": {"op": "pay", "amount": 30}},
+  {"id": "a15", "title": "Charity Mile", "text": "You pledged more than you planned to run.", "effect": {"op": "pay", "amount": 20}},
+  {"id": "a16", "title": "Found Wallet", "text": "You return it. The reward still counts.", "effect": {"op": "collect", "amount": 30}},
+  {"id": "a17", "title": "Storm Windows", "text": "Every neighbor needs the same repair.", "effect": {"op": "collect_each", "amount": 10}},
+  {"id": "a18", "title": "Moving Day", "text": "Pizza for the crew comes out of your pocket.", "effect": {"op": "pay", "amount": 10}},
+  {"id": "a19", "title": "Art Prize", "text": "The local show writes you a check.", "effect": {"op": "collect", "amount": 50}},
+  {"id": "a20", "title": "Career Leap", "text": "You take the offer with the longer title.", "effect": {"op": "swap_career"}}
+]

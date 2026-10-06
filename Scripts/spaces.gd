@@ -72,4 +72,6 @@ func get_color_for_type(type) -> Color:
 		Spaces.SpaceType.BONUS: return Color(0.4, 1.0, 0.4)
 		Spaces.SpaceType.DEBT: return Color(1.0, 0.5, 0.5)
 		Spaces.SpaceType.END: return Color(1.0, 1.0, 1.0)
+		Spaces.SpaceType.PET: return Color(1.0, 0.55, 0.15)
+		Spaces.SpaceType.PARK: return Color(0.75, 0.72, 0.62)
 		_: return Color(0.5, 0.5, 0.5)

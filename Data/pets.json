@@ -1,0 +1,12 @@
+[
+  {"id": "p1", "title": "Miso", "text": "A cat who pays the rent in stares.", "effect": {"op": "collect", "amount": 10}},
+  {"id": "p2", "title": "Biscuit", "text": "A dog who believes every walk is a parade.", "effect": {"op": "pay", "amount": 10}},
+  {"id": "p3", "title": "Pepper", "text": "The parrot repeats your salary negotiations.", "effect": {"op": "collect", "amount": 20}},
+  {"id": "p4", "title": "Noodle", "text": "A rabbit with a talent for cables.", "effect": {"op": "pay", "amount": 20}},
+  {"id": "p5", "title": "Captain", "text": "An old dog who still checks the door.", "effect": {"op": "collect_each", "amount": 10}},
+  {"id": "p6", "title": "Pebble", "text": "A lizard who suns on the important mail.", "effect": {"op": "collect", "amount": 10}},
+  {"id": "p7", "title": "Dumpling", "text": "A pig who thinks the garden is a buffet.", "effect": {"op": "pay", "amount": 30}},
+  {"id": "p8", "title": "Click", "text": "A rescue hound who finds every lost key.", "effect": {"op": "collect", "amount": 30}},
+  {"id": "p9", "title": "Soot", "text": "A kitten who audits the couch.", "effect": {"op": "pay", "amount": 10}},
+  {"id": "p10", "title": "Marlow", "text": "A terrier who collects admirers and mud.", "effect": {"op": "collect_each", "amount": 10}}
+]

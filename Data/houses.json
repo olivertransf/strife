@@ -1,0 +1,12 @@
+[
+  {"id": "h1", "title": "Cedar Cottage", "text": "A small place with a loud porch.", "price": 80, "red": 40, "black": 140},
+  {"id": "h2", "title": "Brick Walk-up", "text": "Stairs, radiators, and a loyal super.", "price": 100, "red": 60, "black": 180},
+  {"id": "h3", "title": "Lake Cabin", "text": "The dock is worth more than the roof.", "price": 120, "red": 50, "black": 220},
+  {"id": "h4", "title": "Corner Condo", "text": "You can see the park if you lean.", "price": 140, "red": 80, "black": 200},
+  {"id": "h5", "title": "Hill Bungalow", "text": "The garden has opinions about the lawn.", "price": 110, "red": 70, "black": 190},
+  {"id": "h6", "title": "Harbor Loft", "text": "Fog in the morning, horns at night.", "price": 160, "red": 90, "black": 260},
+  {"id": "h7", "title": "Orchard House", "text": "The trees were here before the street.", "price": 150, "red": 70, "black": 240},
+  {"id": "h8", "title": "Station Flat", "text": "Trains are your alarm clock.", "price": 90, "red": 50, "black": 150},
+  {"id": "h9", "title": "Glass Aerie", "text": "Every room is a window with furniture.", "price": 200, "red": 100, "black": 320},
+  {"id": "h10", "title": "Maple Duplex", "text": "You live on one side and rent the other.", "price": 130, "red": 80, "black": 210}
+]
