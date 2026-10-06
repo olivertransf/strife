@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "godot-mcp": {
+      "command": "node",
+      "args": [
+        "/Users/olivertran/Developer/Godot/Godot-MCP/server/dist/index.js"
+      ],
+      "env": {
+        "MCP_TRANSPORT": "stdio"
+      }
+    }
+  }
+}

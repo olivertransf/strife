@@ -50,4 +50,4 @@ The play scene and the simulator call the same rules API in `Scripts/life/`. The
 - `Scripts/life/life_rules.gd` is the rules. `life_policy.gd` is the shared chooser. `life_tests.gd` is the headless check.
 - `Scripts/main.gd` runs a turn. `board_view.gd`, `hud.gd`, and `camera_3d.gd` are the board, cards, and camera.
 
-An in-editor agent can also drive Godot through [Godot MCP](https://github.com/ee0pdt/Godot-MCP) or [godot-mcp](https://github.com/Coding-Solo/godot-mcp). The headless script above is the check that does not need the editor open.
+The editor plugin in `addons/godot_mcp` is [Godot MCP](https://github.com/ee0pdt/Godot-MCP) (MIT). It listens on port 9080 while the Godot editor is open. The matching server is built at `~/Developer/Godot/Godot-MCP/server`, and `.cursor/mcp.json` launches it. The headless script above is the check that does not need the editor open.
