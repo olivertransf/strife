@@ -47,7 +47,8 @@
     "babies": 0,
     "next": [
       "Space6"
-    ]
+    ],
+    "tag": "smiley"
   },
   "Space6": {
     "type": "payday",
@@ -71,7 +72,8 @@
     "babies": 0,
     "next": [
       "Space9"
-    ]
+    ],
+    "tag": "black_dot"
   },
   "Space9": {
     "type": "payday",
@@ -224,7 +226,8 @@
     "babies": 0,
     "next": [
       "Space28"
-    ]
+    ],
+    "tag": "roadkill"
   },
   "Space28": {
     "type": "payday",
@@ -232,7 +235,8 @@
     "babies": 0,
     "next": [
       "Space29"
-    ]
+    ],
+    "tag": "car_stack"
   },
   "Space29": {
     "type": "action",
@@ -240,7 +244,8 @@
     "babies": 0,
     "next": [
       "Space30"
-    ]
+    ],
+    "tag": "ram"
   },
   "Space30": {
     "type": "house",
@@ -298,7 +303,8 @@
       "Space37",
       "Space124"
     ],
-    "label": "Family"
+    "label": "Family",
+    "tag": "family_stop"
   },
   "Space37": {
     "type": "house",
@@ -394,7 +400,8 @@
     "babies": 0,
     "next": [
       "Space49"
-    ]
+    ],
+    "tag": "star"
   },
   "Space49": {
     "type": "payday",
@@ -460,7 +467,8 @@
       "Space57",
       "Space64"
     ],
-    "label": "Risky"
+    "label": "Risky",
+    "tag": "risky"
   },
   "Space57": {
     "type": "action",
@@ -556,7 +564,8 @@
     "babies": 0,
     "next": [
       "Space70"
-    ]
+    ],
+    "tag": "star"
   },
   "Space70": {
     "type": "house",
@@ -652,7 +661,8 @@
     "babies": 0,
     "next": [
       "Space82"
-    ]
+    ],
+    "tag": "macaw"
   },
   "Space82": {
     "type": "stop",
@@ -661,7 +671,8 @@
     "next": [
       "Space83"
     ],
-    "label": "Night"
+    "label": "Night",
+    "tag": "night_school"
   },
   "Space83": {
     "type": "payday",
@@ -709,7 +720,8 @@
     "babies": 0,
     "next": [
       "Space89"
-    ]
+    ],
+    "tag": "star"
   },
   "Space89": {
     "type": "pet",
@@ -725,7 +737,8 @@
     "babies": 0,
     "next": [
       "Space91"
-    ]
+    ],
+    "tag": "polar"
   },
   "Space91": {
     "type": "payday",
@@ -1006,7 +1019,8 @@
     "next": [
       "Space13"
     ],
-    "label": "Grad"
+    "label": "Grad",
+    "tag": "school"
   },
   "Space124": {
     "type": "action",

@@ -318,8 +318,9 @@ func _present(ev: Dictionary) -> void:
 		"wheel":
 			board.set_spin(int(ev.get("spin", 1)))
 			hud.banner("Wheel hits %d" % int(ev.get("spin", 0)), _wheel_line(ev), Color(0.72, 0.55, 0.95))
+			var prize := int(ev.get("prize", 0))
 			for winner in ev.get("winners", []):
-				_float_at(int(winner), "+200K", Color(0.72, 0.55, 0.95))
+				_float_at(int(winner), "+%dK" % prize, Color(0.72, 0.55, 0.95))
 			_sfx("cheer")
 			camera.shot("wheel", board.wheel_position, board.span)
 			await get_tree().create_timer(0.95).timeout
@@ -339,6 +340,22 @@ func _present(ev: Dictionary) -> void:
 		"pass":
 			hud.banner("Walk on", who, Color(0.78, 0.76, 0.7))
 			await get_tree().create_timer(0.28).timeout
+		"death":
+			hud.banner(str(ev.get("title", "Death")), "%s    %s" % [who, str(ev.get("text", ""))], Color(0.55, 0.08, 0.1))
+			_sfx("stop")
+			await get_tree().create_timer(0.8).timeout
+		"jail":
+			hud.banner("Jail", "%s    %s" % [who, str(ev.get("text", ""))], Color(0.35, 0.38, 0.48))
+			await get_tree().create_timer(0.55).timeout
+		"duel":
+			hud.banner(str(ev.get("title", "Duel")), str(ev.get("text", who)), Color(0.86, 0.32, 0.28))
+			await get_tree().create_timer(0.6).timeout
+		"skip":
+			hud.banner("Skip", "%s    %s" % [who, str(ev.get("text", ""))], Color(0.72, 0.7, 0.64))
+			await get_tree().create_timer(0.45).timeout
+		"status":
+			hud.banner(str(ev.get("title", "Status")), who, Color(0.78, 0.76, 0.7))
+			await get_tree().create_timer(0.4).timeout
 
 
 func _banner_for_card(kind: String, ev: Dictionary, who: String) -> void:
@@ -381,7 +398,7 @@ func _wheel_line(ev: Dictionary) -> String:
 			names.append(seats[index].display_name)
 	if names.is_empty():
 		return "Nobody collected"
-	return "200K for " + ", ".join(names)
+	return "%dK for " % int(ev.get("prize", 0)) + ", ".join(names)
 
 
 func _who(ev: Dictionary) -> String:

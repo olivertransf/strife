@@ -6,35 +6,35 @@ const Policy = preload("res://Scripts/life/life_policy.gd")
 
 static func run(spaces_root: Node) -> String:
 	var cases := [
-		"_payday_pass_and_land",
-		"_stop_cuts_move",
-		"_college_and_career",
-		"_loans_and_repay",
-		"_wheel_prize",
-		"_baby_and_card_score",
+		"_unemployed_and_salary",
+		"_half_speed",
+		"_bee_keeper_spin",
+		"_singer_voice",
+		"_college_yeet",
+		"_house_colors",
+		"_wheel_pot",
 		"_retirement_order",
-		"_house_sale_colors",
 	]
 	for case_name in cases:
 		var rules := Rules.new()
 		var err := ""
 		match case_name:
-			"_payday_pass_and_land":
-				err = _payday_pass_and_land(rules)
-			"_stop_cuts_move":
-				err = _stop_cuts_move(rules)
-			"_college_and_career":
-				err = _college_and_career(rules)
-			"_loans_and_repay":
-				err = _loans_and_repay(rules)
-			"_wheel_prize":
-				err = _wheel_prize(rules)
-			"_baby_and_card_score":
-				err = _baby_and_card_score(rules)
+			"_unemployed_and_salary":
+				err = _unemployed_and_salary(rules)
+			"_half_speed":
+				err = _half_speed(rules)
+			"_bee_keeper_spin":
+				err = _bee_keeper_spin(rules)
+			"_singer_voice":
+				err = _singer_voice(rules)
+			"_college_yeet":
+				err = _college_yeet(rules)
+			"_house_colors":
+				err = _house_colors(rules)
+			"_wheel_pot":
+				err = _wheel_pot(rules)
 			"_retirement_order":
 				err = _retirement_order(rules)
-			"_house_sale_colors":
-				err = _house_sale_colors(rules)
 		if err != "":
 			return err
 	var graph_err := graph(spaces_root)
@@ -49,36 +49,26 @@ static func run_sim(games: int, seed: int) -> String:
 		var rules := Rules.new()
 		rules.setup(Rules.load_board(), Rules.load_decks(), 4, seed + n, true, PackedStringArray(["Alex", "Blair", "Casey", "Drew"]))
 		var guard := 0
-		var seen := {}
-		while not rules.game_over and guard < 900:
+		while not rules.game_over and guard < 12000:
 			guard += 1
-			var me: Dictionary = rules.players[rules.turn]
-			var key := "%s|%s|%s|%s|%s|%s|%s" % [
-				rules.phase,
-				rules.turn,
-				me.space,
-				me.cash,
-				rules.pending.get("kind", ""),
-				rules.pending.get("cursor", ""),
-				rules.pending.get("extra_phase", false),
-			]
-			seen[key] = int(seen.get(key, 0)) + 1
-			if int(seen[key]) > 6:
-				return "stalled game %d at %s" % [n, key]
+			var before := rules.acts
 			rules.act(Policy.choose(rules))
 			if rules.fault != "":
 				return "game %d %s" % [n, rules.fault]
+			if rules.acts == before and not rules.game_over:
+				return "game %d stalled at %s" % [n, rules.phase]
 			if not rules.game_over:
 				for p in rules.players:
 					if int(p.cash) < 0:
 						return "game %d negative cash" % n
 		if not rules.game_over:
-			return "game %d did not finish" % n
-		if rules.retire_bonuses != [400, 300, 200, 100]:
-			return "game %d retirement order %s" % [n, str(rules.retire_bonuses)]
-		for p in rules.players:
-			if not bool(p.retired):
-				return "game %d %s never retired" % [n, p.name]
+			var me: Dictionary = rules.players[rules.turn]
+			return "game %d phase %s p%s %s cash %s loans %s car %s boys %s girls %s crowd %s/%s flat %s odd %s bike %s jet %s m10 %s host %s unemp %s" % [
+				n, rules.phase, str(rules.turn), str(me.space), str(me.cash), str(me.loans),
+				str(me.car_count), str(me.boys), str(me.girls), str(me.crowd_boys), str(me.crowd_girls),
+				str(me.flat_tire_turns), str(me.odd_half), str(me.ebike), str(me.jet_turns), str(me.move10_turns),
+				str(me.bacteria_host), str(me.unemployed),
+			]
 		results.append({"winner": rules.winners, "cash": _cash_row(rules)})
 	var path := ProjectSettings.globalize_path("res://artifacts/sim.json")
 	DirAccess.make_dir_recursive_absolute(path.get_base_dir())
@@ -145,206 +135,168 @@ static func graph(spaces_root: Node) -> String:
 	return ""
 
 
-static func _payday_pass_and_land(rules: Rules) -> String:
-	var board := _line(["payday", "payday"])
-	rules.setup(board, _salary_deck(50), 1, 1, false)
+static func _unemployed_and_salary(rules: Rules) -> String:
+	var paid := Rules.new()
+	paid.setup(_line(["payday", "payday"]), _salary_deck(50, 2), 1, 1, false)
+	_ready(paid)
+	paid.act({"op": "spin", "value": 2})
+	if paid.fault != "":
+		return "salary %s" % paid.fault
+	if int(paid.players[0].cash) != 300:
+		return "salary cash %s" % str(paid.players[0].cash)
+	rules.setup(_line(["payday", "payday"]), _salary_deck(50, 2), 1, 1, false)
+	_ready(rules)
+	rules.players[0].career = null
+	rules.players[0].unemployed = true
+	rules.act({"op": "spin", "value": 2})
+	if int(rules.players[0].cash) != 240:
+		return "unemployed cash %s" % str(rules.players[0].cash)
+	return ""
+
+
+static func _half_speed(rules: Rules) -> String:
+	rules.setup(_line(["pet", "pet", "pet", "pet"]), _salary_deck(0, 2), 1, 2, false)
+	_ready(rules)
+	rules.players[0].car_count = 0
+	rules.act({"op": "spin", "value": 7})
+	if rules.fault != "":
+		return "half %s" % rules.fault
+	if rules.players[0].space != "S3":
+		return "half landed on %s" % rules.players[0].space
+	return ""
+
+
+static func _bee_keeper_spin(rules: Rules) -> String:
+	var bee := {
+		"id": "bee_keeper", "deck": "career", "title": "Bee Keeper", "text": "Hive.",
+		"salary": 0, "bonus": 3, "gift": 0, "special": "bee",
+	}
+	var decks := _salary_deck(0, 1)
+	decks.career = [bee]
+	rules.setup(_line(["pet", "pet", "pet"]), decks, 1, 3, false)
+	rules.act({"op": "start", "college": false})
+	if rules.phase != "spin":
+		return "bee did not start, phase %s" % rules.phase
+	rules.act({"op": "spin", "value": 3})
+	if str(rules.players[0].purgatory) != "snake_return":
+		return "bee purgatory %s" % str(rules.players[0].purgatory)
+	if int(rules.players[0].cash) != 1200:
+		return "bee cash %s" % str(rules.players[0].cash)
+	rules.act({"op": "spin", "value": 1})
+	if rules.fault != "":
+		return "bee return %s" % rules.fault
+	if int(rules.players[0].cash) != 250 or int(rules.players[0].loans) != 5:
+		return "snake cash %s loans %s" % [str(rules.players[0].cash), str(rules.players[0].loans)]
+	if rules.players[0].career != null:
+		return "snake kept the job"
+	return ""
+
+
+static func _singer_voice(rules: Rules) -> String:
+	var singer := {"id": "singer", "deck": "career", "title": "Singer", "text": "Voice.", "salary": 70, "bonus": 4, "gift": 20}
+	var assassin := {"id": "assassin", "deck": "career", "title": "Assassin", "text": "Quiet.", "salary": 80, "bonus": 2, "gift": 0, "special": "assassin"}
+	var filler := {"id": "filler", "deck": "career", "title": "Filler", "text": "Wait.", "salary": 1, "bonus": 8, "gift": 0}
+	var decks := _salary_deck(0, 1)
+	decks.career = [singer, filler.duplicate(true), assassin, filler.duplicate(true)]
+	rules.setup(_line(_pets(12)), decks, 2, 4, false, PackedStringArray(["Ada", "Bea"]))
+	rules.act({"op": "start", "college": false})
+	rules.act({"op": "keep", "index": 0})
 	rules.act({"op": "start", "college": false})
 	rules.act({"op": "keep", "index": 0})
 	rules.act({"op": "spin", "value": 2})
 	if rules.fault != "":
-		return "payday %s" % rules.fault
-	if int(rules.players[0].cash) != 400:
-		return "pass then land payday cash %s" % str(rules.players[0].cash)
-	if rules.players[0].space != "S2":
-		return "payday landed on %s" % rules.players[0].space
-	var land := Rules.new()
-	land.setup(board, _salary_deck(50), 1, 1, false)
-	land.act({"op": "start", "college": false})
-	land.act({"op": "keep", "index": 0})
-	land.act({"op": "spin", "value": 1})
-	if int(land.players[0].cash) != 350:
-		return "land payday cash %s" % str(land.players[0].cash)
+		return "singer %s" % rules.fault
+	if int(rules.players[0].assassin_hits) != 1 or not bool(rules.players[0].silent):
+		return "first hit silent %s" % str(rules.players[0].silent)
+	if rules.players[0].purgatory != null:
+		return "singer died early"
+	rules.act({"op": "spin", "value": 1})
+	rules.act({"op": "spin", "value": 2})
+	if int(rules.players[0].assassin_hits) != 2 or bool(rules.players[0].silent):
+		return "voice did not return"
+	if rules.players[0].purgatory != null:
+		return "second hit killed the singer"
 	return ""
 
 
-static func _stop_cuts_move(rules: Rules) -> String:
-	var board := _line(["stop", "payday"])
-	board["S1"]["stop"] = "married"
-	rules.setup(board, _salary_deck(0), 1, 2, false)
-	rules.act({"op": "start", "college": false})
-	rules.act({"op": "keep", "index": 0})
-	rules.act({"op": "spin", "value": 5})
-	if rules.players[0].space != "S1":
-		return "stop did not halt on %s" % rules.players[0].space
-	if rules.phase != "spin":
-		return "stop should spin again"
-	var gift := int(rules.players[0].cash) - 200
-	if gift != 50 and gift != 100:
-		return "wedding gift %s" % gift
-	return ""
-
-
-static func _college_and_career(rules: Rules) -> String:
-	var board := {
-		"Space0": {"type": "start", "stop": "start", "next": ["Job", "Grad"], "babies": 0},
-		"Job": {"type": "action", "stop": "", "next": ["Grad"], "babies": 0},
-		"Grad": {"type": "stop", "stop": "graduation", "next": ["Tail"], "babies": 0},
-		"Tail": {"type": "action", "stop": "", "next": [], "babies": 0},
-	}
-	var decks := _salary_deck(40)
-	decks.college = [{"id": "g", "deck": "college", "title": "Pilot", "text": "Wings.", "salary": 130}, {"id": "g2", "deck": "college", "title": "Vet", "text": "Paws.", "salary": 90}]
-	rules.setup(board, decks, 1, 3, false)
+static func _college_yeet(rules: Rules) -> String:
+	rules.setup(Rules.load_board(), Rules.load_decks(), 1, 5, false)
 	rules.act({"op": "start", "college": true})
-	if int(rules.players[0].cash) != 100:
-		return "tuition cash %s" % str(rules.players[0].cash)
-	if rules.players[0].career != null:
-		return "college started with a job"
-	rules.act({"op": "spin", "value": 1})
-	if rules.phase != "choose_card":
-		return "graduation did not deal, phase %s fault %s" % [rules.phase, rules.fault]
-	if rules.pending.cards.size() != 2:
-		return "graduation draw"
-	rules.act({"op": "keep", "index": 0})
-	if rules.players[0].career.title != "Pilot":
-		return "kept college card"
-	var career := Rules.new()
-	career.setup(board, decks, 1, 3, false)
-	career.act({"op": "start", "college": false})
-	if career.phase != "choose_card" or career.pending.cards.size() != 2:
-		return "career did not draw two"
-	career.act({"op": "keep", "index": 1})
-	if career.players[0].career.title != "Clerk":
-		return "kept the wrong career"
-	return ""
-
-
-static func _loans_and_repay(rules: Rules) -> String:
-	var board := _line(["action", "action"])
-	var decks := _salary_deck(0)
-	decks.action = [
-		{"id": "pay", "deck": "action", "title": "Bill", "text": "Ouch.", "effect": {"op": "pay", "amount": 250}},
-		{"id": "found", "deck": "action", "title": "Found", "text": "Nice.", "effect": {"op": "collect", "amount": 200}},
-	]
-	rules.setup(board, decks, 1, 4, false)
-	rules.act({"op": "start", "college": false})
-	rules.act({"op": "keep", "index": 0})
-	rules.act({"op": "spin", "value": 1})
-	if int(rules.players[0].loans) != 1 or int(rules.players[0].cash) != 0:
-		return "loan take cash %s loans %s" % [str(rules.players[0].cash), str(rules.players[0].loans)]
-	if int(rules.players[0].cash) < 0:
-		return "negative without covering loan"
-	rules.act({"op": "spin", "value": 1})
-	if int(rules.players[0].cash) != 200:
-		return "collect after loan %s" % str(rules.players[0].cash)
-	rules.act({"op": "repay"})
+	var moved: Array = rules.act({"op": "spin", "value": 2})
 	if rules.fault != "":
-		return "repay %s" % rules.fault
-	if int(rules.players[0].loans) != 0 or int(rules.players[0].cash) != 140:
-		return "repay result cash %s loans %s" % [str(rules.players[0].cash), str(rules.players[0].loans)]
+		return "college %s" % rules.fault
+	if rules.players[0].space != "Space82":
+		return "college space %s" % rules.players[0].space
+	if rules.phase != "choose_card":
+		return "college phase %s" % rules.phase
+	if int(rules.players[0].cash) != 0:
+		return "college cash %s" % str(rules.players[0].cash)
+	for ev in moved:
+		if str(ev.get("kind", "")) == "payday":
+			return "college collected a payday"
 	return ""
 
 
-static func _wheel_prize(rules: Rules) -> String:
-	var board := _line(["wheel"])
-	rules.setup(board, _salary_deck(0), 2, 5, false, PackedStringArray(["Alex", "Blair"]))
-	rules.act({"op": "start", "college": false})
-	rules.act({"op": "keep", "index": 0})
+static func _house_colors(_rules: Rules) -> String:
+	var house := {"id": "h", "title": "Cabin", "red": 60, "black": 180}
+	if Rules.sale_price(house, 3) != 60:
+		return "red sale %s" % str(Rules.sale_price(house, 3))
+	if Rules.sale_price(house, 8) != 180:
+		return "black sale %s" % str(Rules.sale_price(house, 8))
+	return ""
+
+
+static func _wheel_pot(rules: Rules) -> String:
+	rules.setup(_line(["wheel"]), _salary_deck(0, 4), 2, 6, false, PackedStringArray(["Ada", "Bea"]))
+	_ready(rules)
 	rules.act({"op": "spin", "value": 1})
 	if rules.phase != "wheel_pick":
 		return "wheel phase %s %s" % [rules.phase, rules.fault]
 	rules.act({"op": "wheel", "number": 4})
-	rules.act({"op": "wheel", "number": 4})
-	rules.act({"op": "wheel", "number": 4})
+	rules.act({"op": "wheel", "number": 4, "spin": 4})
 	if rules.fault != "":
 		return "wheel %s" % rules.fault
+	if rules.pot != 200:
+		return "pot %s" % str(rules.pot)
 	for p in rules.players:
-		if int(p.cash) != 400:
+		if int(p.cash) != 300:
 			return "wheel cash %s" % str(p.cash)
-	return ""
-
-
-static func _baby_and_card_score(rules: Rules) -> String:
-	var board := {
-		"Space0": {"type": "start", "stop": "start", "next": ["A", "Z"], "babies": 0},
-		"A": {"type": "action", "stop": "", "next": ["R"], "babies": 0},
-		"R": {"type": "stop", "stop": "retirement", "next": ["P", "Q"], "babies": 0},
-		"P": {"type": "end", "stop": "", "next": [], "babies": 0, "label": "Countryside"},
-		"Q": {"type": "end", "stop": "", "next": [], "babies": 0, "label": "Mansion"},
-		"Z": {"type": "action", "stop": "", "next": ["A"], "babies": 0},
-	}
-	var decks := _salary_deck(0)
-	decks.action = [{"id": "baby", "deck": "action", "title": "Twins", "text": "Two.", "effect": {"op": "babies", "count": 2}}]
-	rules.setup(board, decks, 1, 6, false)
-	rules.act({"op": "start", "college": false})
-	rules.act({"op": "keep", "index": 0})
-	rules.act({"op": "spin", "value": 1})
-	rules.act({"op": "spin", "value": 1})
-	rules.act({"op": "fork", "index": 0})
-	if not rules.game_over:
-		return "score game did not end %s" % rules.fault
-	if int(rules.players[0].babies) != 2:
-		return "babies %s" % str(rules.players[0].babies)
-	if int(rules.players[0].cash) != 800:
-		return "end value cash %s" % str(rules.players[0].cash)
 	return ""
 
 
 static func _retirement_order(rules: Rules) -> String:
 	var board := {
-		"Space0": {"type": "start", "stop": "start", "next": ["R", "Z"], "babies": 0},
-		"R": {"type": "stop", "stop": "retirement", "next": ["P", "Q"], "babies": 0},
-		"P": {"type": "end", "stop": "", "next": [], "babies": 0},
-		"Q": {"type": "end", "stop": "", "next": [], "babies": 0},
-		"Z": {"type": "action", "stop": "", "next": ["R"], "babies": 0},
+		"Space0": {"type": "start", "stop": "start", "next": ["S1", "Z"], "babies": 0},
+		"S1": {"type": "end", "stop": "", "next": [], "babies": 0},
+		"Z": {"type": "pet", "stop": "", "next": ["S1"], "babies": 0},
 	}
-	rules.setup(board, _salary_deck(0), 2, 7, false, PackedStringArray(["Alex", "Blair"]))
-	for _i in 2:
+	rules.setup(board, _salary_deck(0, 8), 4, 7, false, PackedStringArray(["A", "B", "C", "D"]))
+	for _i in 4:
 		rules.act({"op": "start", "college": false})
 		rules.act({"op": "keep", "index": 0})
+	for _j in 4:
 		rules.act({"op": "spin", "value": 1})
-		rules.act({"op": "fork", "index": 0})
-	if rules.retire_bonuses != [400, 300]:
+	if rules.fault != "":
+		return "retire %s" % rules.fault
+	if rules.retire_bonuses != [400, 300, 200, 100]:
 		return "order %s" % str(rules.retire_bonuses)
 	if not rules.game_over:
 		return "retirement did not finish"
 	return ""
 
 
-static func _house_sale_colors(rules: Rules) -> String:
-	var board := _line(["house", "house"])
-	var decks := _salary_deck(0)
-	var house := {"id": "h", "deck": "house", "title": "Cabin", "text": "Dock.", "price": 100, "red": 60, "black": 180}
-	decks.house = [house, house.duplicate(true), house.duplicate(true)]
-	rules.setup(board, decks, 1, 8, false)
-	rules.act({"op": "start", "college": false})
-	rules.act({"op": "keep", "index": 0})
-	rules.act({"op": "spin", "value": 1})
-	rules.act({"op": "house", "choice": "buy"})
-	rules.act({"op": "keep", "index": 0})
-	if int(rules.players[0].cash) != 100:
-		return "buy cash %s %s" % [str(rules.players[0].cash), rules.fault]
-	rules.act({"op": "spin", "value": 1})
-	rules.act({"op": "house", "choice": "sell", "spin": 2})
-	if int(rules.players[0].cash) != 160:
-		return "red sale %s" % str(rules.players[0].cash)
-	var black := Rules.new()
-	black.setup(board, decks, 1, 8, false)
-	black.act({"op": "start", "college": false})
-	black.act({"op": "keep", "index": 0})
-	black.act({"op": "spin", "value": 1})
-	black.act({"op": "house", "choice": "buy"})
-	black.act({"op": "keep", "index": 0})
-	black.act({"op": "spin", "value": 1})
-	black.act({"op": "house", "choice": "sell", "spin": 8})
-	if int(black.players[0].cash) != 280:
-		return "black sale %s %s" % [str(black.players[0].cash), black.fault]
-	return ""
+static func _ready(rules: Rules) -> void:
+	var count := rules.players.size()
+	for _i in count:
+		rules.act({"op": "start", "college": false})
+		if rules.phase == "choose_card":
+			rules.act({"op": "keep", "index": 0})
 
 
 static func _line(types: Array) -> Dictionary:
 	var board := {
 		"Space0": {"type": "start", "stop": "start", "next": ["S1", "Z"], "babies": 0},
-		"Z": {"type": "action", "stop": "", "next": ["S1"], "babies": 0},
+		"Z": {"type": "pet", "stop": "", "next": ["S1"], "babies": 0},
 	}
 	for i in types.size():
 		var name := "S%d" % (i + 1)
@@ -356,21 +308,35 @@ static func _line(types: Array) -> Dictionary:
 	return board
 
 
-static func _salary_deck(salary: int) -> Dictionary:
+static func _pets(count: int) -> Array:
+	var types: Array = []
+	for _i in count:
+		types.append("pet")
+	return types
+
+
+static func _salary_deck(salary: int, copies: int) -> Dictionary:
+	var careers: Array = []
+	for i in copies:
+		careers.append({
+			"id": "job%d" % i,
+			"deck": "career",
+			"title": "Clerk" if i % 2 == 1 else "Cook",
+			"text": "Work.",
+			"salary": salary,
+			"bonus": 0,
+			"gift": 0,
+		})
 	return {
-		"career": [
-			{"id": "a", "deck": "career", "title": "Cook", "text": "Rush.", "salary": salary},
-			{"id": "b", "deck": "career", "title": "Clerk", "text": "Files.", "salary": salary},
-		],
+		"career": careers,
 		"college": [
-			{"id": "g", "deck": "college", "title": "Pilot", "text": "Wings.", "salary": 100},
-			{"id": "g2", "deck": "college", "title": "Vet", "text": "Paws.", "salary": 90},
+			{"id": "g", "deck": "college", "title": "Pilot", "text": "Wings.", "salary": 100, "bonus": 1, "gift": 0},
+			{"id": "g2", "deck": "college", "title": "Vet", "text": "Paws.", "salary": 90, "bonus": 2, "gift": 0},
 		],
 		"action": [
-			{"id": "act", "deck": "action", "title": "Quiet", "text": "Nothing much.", "effect": {"op": "collect", "amount": 0}},
+			{"id": "left_hand", "deck": "action", "title": "Left hand", "text": "Table only.", "keep": false},
 		],
 		"house": [],
-		"pet": [],
 	}
 
 

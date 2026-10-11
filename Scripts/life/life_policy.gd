@@ -5,6 +5,12 @@ static func choose(rules) -> Dictionary:
 	var info: Dictionary = rules.prompt()
 	var phase := str(info.get("phase", ""))
 	match phase:
+		"seat_spin":
+			return {"op": "spin"}
+		"rps":
+			return {"op": "rps", "go_last": false}
+		"invest":
+			return {"op": "invest", "yes": false}
 		"choose_start":
 			var college := wants_college(rules)
 			return {"op": "start", "college": college}
@@ -18,6 +24,12 @@ static func choose(rules) -> Dictionary:
 			return _house(rules)
 		"wheel_pick":
 			return _wheel(rules, info)
+		"choose_target":
+			return _target(rules)
+		"yesno":
+			return {"op": "yesno", "yes": false}
+		"choose_key":
+			return {"op": "key", "number": 4}
 		_:
 			return {"op": "spin"}
 
@@ -64,8 +76,9 @@ static func _keep(rules) -> Dictionary:
 
 static func _spin(rules) -> Dictionary:
 	var me: Dictionary = rules.players[rules.turn]
-	if int(me.loans) > 0 and int(me.cash) >= 200:
-		return {"op": "repay"}
+	if me.jail_key == null and not bool(me.groundhog) and int(me.skip_turns) <= 0 and int(me.move10_turns) <= 0:
+		if int(me.loans) > 0 and int(me.cash) >= 120:
+			return {"op": "repay"}
 	return {"op": "spin"}
 
 
@@ -74,45 +87,42 @@ static func _fork(rules) -> Dictionary:
 	var options: Array = rules.pending.get("options", [])
 	var me: Dictionary = rules.players[rules.turn]
 	var cash := int(me.cash)
-	if kind == "family":
-		return options[1] if cash >= 80 else options[0]
-	if kind == "risky":
-		return options[0] if cash >= 150 else options[1]
-	if kind == "retirement":
-		var ahead := true
-		for other in rules.players:
-			if int(other.i) != int(me.i) and int(other.cash) > cash:
-				ahead = false
-		return options[1] if ahead else options[0]
-	if kind == "night":
-		var salary := 0
-		if me.career is Dictionary:
-			salary = int(me.career.salary)
-		return options[0] if _avg(rules, "college") > salary else options[1]
+	if kind == "star_bet":
+		if cash >= 100 and options.size() > 0:
+			return options[0]
+		if options.size() > 1:
+			return options[1]
+	if options.is_empty():
+		return {"op": "fork", "index": 0}
 	return options[0]
 
 
 static func _house(rules) -> Dictionary:
-	if str(rules.pending.get("kind", "")) == "house_pick":
-		return _keep(rules)
 	var me: Dictionary = rules.players[rules.turn]
-	if me.houses.size() > 0 and int(me.cash) < 60:
-		return {"op": "house", "choice": "sell"}
-	if int(me.cash) >= 160:
+	var price := 200 if str(rules.pending.get("step", "")) == "love" else 0
+	if price == 0:
+		var house = rules.pending.get("house", {})
+		if house is Dictionary:
+			price = int(house.get("price", 0))
+	if int(me.cash) >= price and price > 0:
 		return {"op": "house", "choice": "buy"}
 	return {"op": "house", "choice": "skip"}
 
 
-static func _wheel(rules, info: Dictionary) -> Dictionary:
-	var picker := int(info.get("picker", rules.turn))
-	if bool(rules.pending.get("extra_phase", false)):
-		var first := int(rules.pending.picks.get(picker, 1))
-		var number := first + 5
-		if number > 10:
-			number -= 10
-		return {"op": "wheel", "number": number}
-	var pick := (picker * 3 + 2) % 10 + 1
-	return {"op": "wheel", "number": pick}
+static func _wheel(_rules, info: Dictionary) -> Dictionary:
+	var picker := int(info.get("picker", 0))
+	return {"op": "wheel", "number": picker + 1}
+
+
+static func _target(rules) -> Dictionary:
+	var options: Array = rules.pending.get("options", [])
+	if options.is_empty():
+		return {"op": "target", "index": 0}
+	var nxt: int = (int(rules.turn) + 1) % rules.players.size()
+	for option in options:
+		if int(option.get("index", -1)) == nxt:
+			return option
+	return options[0]
 
 
 static func _avg(rules, deck_name: String) -> float:
